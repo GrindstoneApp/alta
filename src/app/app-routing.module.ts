@@ -29,7 +29,7 @@ const routes: Routes = [
       ),
     data: {
       seo: {
-        title: 'Grindstone | Check out this Gridnstone job!',
+        title: 'Check out this Grindstone job!',
         metaTags: [
           { name: 'description', content: 'Check out this job that was posted using Grindstone!' },
           { property: 'og:title', content: 'Check out this job!' },
