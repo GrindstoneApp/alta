@@ -33,7 +33,7 @@ export class AuthGuard implements CanLoad, CanActivate {
       return true;
     } else {
       // console.warn('[AuthGuard] ', 'Device is invalid');
-      // window.location.href = 'https://accounts.grindstoneapp.com/o/oauth?redirectURI=https://my.grindstoneapp.com/auth/cb'
+      window.location.href = `https://accounts.grindstoneapp.com/o/oauth?redirectURI=${window.location.protocol}//${window.location.hostname}:${window.location.port}/auth/cb`
       return false;
     }
   }
