@@ -6,7 +6,7 @@ import { LandingGuard } from './guards/landing.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
