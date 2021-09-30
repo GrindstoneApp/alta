@@ -21,6 +21,13 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
   },
+  {
+    path: 'l/:listingID',
+    loadChildren: () =>
+      import('./redirectors/listing/listing.module').then(
+        (m) => m.ListingModule
+      ),
+  },
 ];
 
 @NgModule({
