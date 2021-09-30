@@ -27,6 +27,19 @@ const routes: Routes = [
       import('./redirectors/listing/listing.module').then(
         (m) => m.ListingModule
       ),
+    data: {
+      seo: {
+        title: 'Grindstone | Job Search',
+        metaTags: [
+          { name: 'description', content: 'Check out this job that was posted using Grindstone!' },
+          { property: 'og:title', content: 'Grindstone Jobs' },
+          { property: 'og:description', content: 'Check out this job that was posted using Grindstone!' },
+          { property: 'og:image', content: 'https://grindstoneapp.com/assets/meta/socialImage.png' },
+          { property: 'og:url', content: 'https://grst.one/l/128' },
+          { name: "twitter:card", content: "summary_large_image" },
+        ]
+      }
+    }
   },
 ];
 

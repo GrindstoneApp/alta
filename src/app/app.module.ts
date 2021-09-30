@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SessionService } from 'src/services/auth/session.service';
 import { StorageService } from 'src/services/storage/storage.service';
+import { SeoService } from 'src/services/routing/seo.service';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { StorageService } from 'src/services/storage/storage.service';
   ],
   providers: [
     RequestService,
+    SeoService,
     StorageService,
     SessionService,
     ErrorService,

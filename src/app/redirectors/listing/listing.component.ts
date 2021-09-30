@@ -37,9 +37,10 @@ export class ListingComponent implements OnInit {
     const mobile = this.qa.detectMob();
     if (mobile) {
       setTimeout(function () { window.location.href = "https://apps.apple.com/us/app/grindstone-student-jobs/id1504821305"; }, 25);
+      setTimeout(function () { window.location.href = "https://grindstoneapp.com"; }, 300);
       window.location.href = `grindstone://app/view-job/?id=${this.listingID}&pageType=preview`;
     } else {
-      window.location.href = 'https://grindstoneapp.com'
+      // window.location.href = 'https://grindstoneapp.com'
     }
   }
 
