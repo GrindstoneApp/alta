@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.initialize();
     this.router.events
       .pipe(
         filter((e: any) => e instanceof NavigationEnd),
@@ -35,11 +34,13 @@ export class AppComponent implements OnInit {
         this.seoService.updateTitle(seoData['title']);
         this.seoService.updateMetaTags(seoData['metaTags']);
       });
+
+    this.initialize();
   }
 
   async initialize(): Promise<void> {
     console.log('Initial AppComp');
-    await this.session.initialize();
+    await this.session.initialize(); 
     return;
   }
 }
