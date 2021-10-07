@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
         filter((e: any) => e instanceof NavigationEnd),
         map((e: any) => this.activatedRoute),
         map((route) => {
-          while (route.firstChild) route = route.firstChild;``
+          while (route.firstChild) route = route.firstChild;
           return route;
         }),
         filter((route) => route.outlet === 'primary'),
