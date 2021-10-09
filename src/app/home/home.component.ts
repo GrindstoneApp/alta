@@ -7,24 +7,16 @@ import {
 } from '@angular/core';
 
 import videojs from 'video.js';
-import * as adapter from 'webrtc-adapter/out/adapter_no_global.js';
-import * as RecordRTC from 'recordrtc';
-
-
 import * as Record from 'videojs-record/dist/videojs.record.js';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: 'home.component.html',
+  styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  // reference to the element itself: used to access events and methods
-  private _elementRef: ElementRef
-
-  // index to create unique ID for component
-  idx = 'clip1';
+  deviceReady: boolean = false;
 
   private config: any;
   private player: any; 
@@ -32,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // constructor initializes our declared vars
   constructor(elementRef: ElementRef) {
-    this.player = false;
+    this.player = true;
 
     // save reference to plugin (so it initializes)
     this.plugin = Record;
@@ -40,72 +32,49 @@ export class HomeComponent implements OnInit, OnDestroy {
     // video.js configuration
     this.config = {
       controls: true,
-      autoplay: false,
+      bigPlayButton: true,
+      width: 854,
+      height: 480,
       fluid: false,
-      loop: false,
-      width: 320,
-      height: 240,
-      bigPlayButton: false,
-      controlBar: {
-        volumePanel: false
-      },
       plugins: {
-        /*
-        // wavesurfer section is only needed when recording audio-only
-        wavesurfer: {
-            backend: 'WebAudio',
-            waveColor: '#36393b',
-            progressColor: 'black',
-            debug: true,
-            cursorWidth: 1,
-            displayMilliseconds: true,
-            hideScrollbar: true,
-            plugins: [
-                // enable microphone plugin
-                WaveSurfer.microphone.create({
-                    bufferSize: 4096,
-                    numberOfInputChannels: 1,
-                    numberOfOutputChannels: 1,
-                    constraints: {
-                        video: false,
-                        audio: true
-                    }
-                })
-            ]
-        },
-        */
-        // configure videojs-record plugin
-        record: {
-          audio: false,
-          video: true,
-          debug: true
-        }
+          record: {
+              audio: true,
+              video: {
+                  width: { min: 1920, ideal: 1920, max: 1920 },
+                  height: { min: 1080, ideal: 1080, max: 1080 }
+              },
+              videoBitRate: 8000,
+              videoMimeType: "video/webm;codecs=H264",
+              audioBufferSize: 16384,
+              maxLength: 10,
+              debug: true
+          }
       }
-    };
+  };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() => {
+      console.log("trigger ready");
+      this.player.triggerReady()
+    }, 2000)
+  }
 
   // use ngAfterViewInit to make sure we initialize the videojs element
   // after the component template itself has been rendered
   ngAfterViewInit() {
     // ID with which to access the template's video element
-    let el = 'video_' + this.idx;
+    let el = 'recorder'
 
     // setup the player via the unique element ID
-    this.player = videojs(document.getElementById(el), this.config, () => {
+    this.player = videojs('recorder', this.config, () => {
       console.log('player ready! id:', el);
-
-      // print version information at startup
-      var msg = 'Using video.js ' + videojs.VERSION +
-        ' with videojs-record ' + videojs.getPluginVersion('record') +
-        ' and recordrtc ' + RecordRTC.version;
-      videojs.log(msg);
     });
 
     // device is ready
     this.player.on('deviceReady', () => {
       console.log('device is ready!');
+      this.deviceReady = true;
     });
 
     // user clicked the record button and started recording
@@ -121,7 +90,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     // error handling
-    this.player.on('error', (element, error) => {
+    this.player.on('error', (element: any, error: any) => {
       console.warn(error);
     });
 
