@@ -8,6 +8,7 @@ import {
 
 import videojs from 'video.js';
 import * as Record from 'videojs-record/dist/videojs.record.js';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-home',
@@ -53,43 +54,31 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
   }
 
-  ngOnInit() {
-    setTimeout(() => {
-      console.log("trigger ready");
-      this.player.triggerReady()
-    }, 2000)
+  ngOnInit() {}
+
+  beginButton(): void {
+    $('.vjs-record .vjs-device-button.vjs-control').click()
   }
 
-  // use ngAfterViewInit to make sure we initialize the videojs element
-  // after the component template itself has been rendered
-  ngAfterViewInit() {
-    // ID with which to access the template's video element
+  ngAfterViewInit(): void {
     let el = 'recorder'
-
-    // setup the player via the unique element ID
     this.player = videojs('recorder', this.config, () => {
       console.log('player ready! id:', el);
     });
 
-    // device is ready
     this.player.on('deviceReady', () => {
       console.log('device is ready!');
       this.deviceReady = true;
     });
 
-    // user clicked the record button and started recording
     this.player.on('startRecord', () => {
       console.log('started recording!');
     });
 
-    // user completed recording and stream is available
     this.player.on('finishRecord', () => {
-      // recordedData is a blob object containing the recorded data that
-      // can be downloaded by the user, stored on server etc.
       console.log('finished recording: ', this.player.recordedData);
     });
 
-    // error handling
     this.player.on('error', (element: any, error: any) => {
       console.warn(error);
     });
@@ -99,8 +88,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  // use ngOnDestroy to detach event handlers and remove the player
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.player) {
       this.player.dispose();
       this.player = false;
