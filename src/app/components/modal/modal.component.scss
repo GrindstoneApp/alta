@@ -1,0 +1,34 @@
+.open {
+  .modal-background,
+  .modal-outer-container {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .modal-outer-container {
+    top: 50%;
+  }
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background: var(--modal-overlay-background);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+
+.modal-outer-container {
+  position: fixed;
+  top: calc(50% - 20px);
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  transition: opacity .2s, top .2s;
+}

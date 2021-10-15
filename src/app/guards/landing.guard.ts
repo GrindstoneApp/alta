@@ -29,7 +29,7 @@ export class LandingGuard implements CanLoad, CanActivate {
   async validate() {
     const isAuthenticated = await this.session.sessionInService();
     if (isAuthenticated) {
-        this.pagination.rootToPage('home');
+        this.pagination.rootToPage('editor');
         return false;
     } else {
         return true;

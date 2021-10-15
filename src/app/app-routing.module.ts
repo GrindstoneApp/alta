@@ -6,7 +6,7 @@ import { LandingGuard } from './guards/landing.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'editor',
     pathMatch: 'full',
   },
   {
@@ -14,6 +14,18 @@ const routes: Routes = [
     loadChildren: () => import('./auth/cb/cb.module').then((m) => m.CbModule),
     canLoad: [LandingGuard],
     canActivate: [LandingGuard],
+  },
+  {
+    path: 'editor',
+    loadChildren: () => import('./editor/editor.module').then((m) => m.EditorModule),
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'preview',
+    loadChildren: () => import('./preview/preview.module').then((m) => m.PreviewModule),
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'home',

@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { SessionService } from 'src/services/auth/session.service';
 import { StorageService } from 'src/services/storage/storage.service';
 import { SeoService } from 'src/services/routing/seo.service';
+import { TutorialComponent } from './components/tutorial/tutorial.component';
+import { ModalService } from 'src/services/app-components/modal.service';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import { SeoService } from 'src/services/routing/seo.service';
     SessionService,
     ErrorService,
     PaginationService,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })
