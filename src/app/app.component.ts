@@ -10,6 +10,8 @@ import { SeoService } from 'src/services/routing/seo.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+
   constructor(
     private session: SessionService,
     private router: Router,

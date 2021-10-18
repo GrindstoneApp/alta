@@ -1,6 +1,8 @@
 // @import '~video.js/dist/video-js.css';
 // @import '~videojs-record/dist/css/videojs.record.css';
 
+@import 'theme.scss';
+
 p {
     white-space: pre-wrap;
 }
@@ -9,10 +11,10 @@ html {
     overflow-y: auto;
 }
 
-// * {
-//     -webkit-font-smoothing: antialiased;
-//     -moz-osx-font-smoothing: grayscale;
-// }
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 body {
     margin: 0px;
@@ -31,6 +33,12 @@ body {
     &::-webkit-scrollbar {
         display: none;
     }
+}
+
+button,
+textarea,
+input {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 .fs-splash {
