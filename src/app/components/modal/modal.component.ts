@@ -7,8 +7,11 @@ import { ModalService } from 'src/services/app-components/modal.service';
   styleUrls: ['./modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string = '';
+  @Input() allowClickOff: boolean = true;
+  @Input() closeCb: () => void = () => {}; // The close callback must be an arrow function
   private element: any;
 
   constructor(
@@ -21,15 +24,16 @@ export class ModalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (!this.id) return;
 
-    console.log(this.element);
-
     document.body.appendChild(this.element);
 
-    this.element.addEventListener('click', (el: any) => {
+    if(this.allowClickOff) {
+      this.element.addEventListener('click', (el: any) => {
         if (el.target.className === 'modal-background') {
             this.close();
         }
-    });
+      });
+    }
+    
 
     this.modalService.add(this);
   }
@@ -45,6 +49,10 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   close(): void {
     this.element.classList.remove('open');
+    setTimeout(() => {
+      this.closeCb();
+    }, 200);
+    
   }
 
 }
