@@ -5,6 +5,34 @@
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(73, 72, 92, 0.2);
     z-index: 11;
+    display: flex;
+    .logo-container {
+        position: relative;
+        display: flex;
+        height: fit-content;
+        margin-left: 20px;
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: #2564FD;
+            border-radius: 5px;
+        }
+        h1 {
+            position: relative;
+            color: #21242E;
+            font-size: 23px;
+            margin-left: 15px;
+            margin-top: 11px;
+            height: fit-content;
+            font-weight: 600;
+        }
+    }
+    span {
+        position: relative;
+        height: fit-content;
+        margin-left: 50px;
+        color: #999DAA;
+    }
 }
 
 .page-body {
