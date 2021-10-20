@@ -1,3 +1,25 @@
-<button (click)="openTutorialModal();">Open Modal</button>
-
 <app-tutorial></app-tutorial>
+
+<div class="page-wrapper">
+    <div class="page-topbar">
+
+    </div>
+    <div class="page-body">
+        <div class="page-left">
+            <div class="avatar-container">
+                <div class="avatar"></div>
+                <button class="fullXCenter">Change Profile Picture</button>
+            </div>
+            <input type="text" placeholder="Enter your name">
+            <input type="text" placeholder="Enter your pronouns">
+            <textarea placeholder="Enter your bio"></textarea>
+            <input type="text" placeholder="Location">
+            <input type="text" placeholder="Email">
+            <input type="text" placeholder="Website">
+            
+        </div>
+        <div class="page-right">
+            <button (click)="openTutorialModal();">Open Modal</button>
+        </div>
+    </div>
+</div>
