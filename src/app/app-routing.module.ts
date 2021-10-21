@@ -18,14 +18,14 @@ const routes: Routes = [
   {
     path: 'editor',
     loadChildren: () => import('./editor/editor.module').then((m) => m.EditorModule),
-    // canLoad: [AuthGuard],
-    // canActivate: [AuthGuard]
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'preview',
     loadChildren: () => import('./preview/preview.module').then((m) => m.PreviewModule),
-    // canLoad: [AuthGuard],
-    // canActivate: [AuthGuard]
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'home',

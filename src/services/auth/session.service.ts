@@ -6,14 +6,24 @@ import { StorageService } from '../storage/storage.service';
 import jwt_decode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
 import { RequestService } from '../http/request.service';
+import { User, UserProvider } from 'src/providers/user.provider';
+import { from, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SessionService {
+
+  accessToken: string | null = null;
+  refreshToken: string | null = null;
+
   constructor(
     private store: StorageService,
     private err: ErrorService,
+    private http: HttpClient,
+    private user: UserProvider,
     private request: RequestService
   ) {}
 
@@ -21,9 +31,24 @@ export class SessionService {
   async initialize(): Promise<void> {
     try {
       const session = await this.sessionInService()
+      if (session) {
+        const user = await this.initializeUser();
+      } else {
+        // Do Something
+      }
       return;
     } catch(err) { 
       throw err;
+    }
+  }
+
+  async initializeUser(): Promise<void> {
+    try {
+      const response = await this.request.get(`${environment.API_URL}/auth/user`)
+      this.user.set(response as User);
+    } catch(err) { 
+      console.error("failed to init user")
+      throw err
     }
   }
 
@@ -32,19 +57,21 @@ export class SessionService {
       const accessToken = await this.get('accessToken');
       const refreshToken = await this.get('refreshToken');
       if (accessToken && refreshToken) {
+        this.refreshToken = refreshToken;
         const sessionExpired = await this.tokenExpired({
           token: String(accessToken),
-          threshold: 3500000,
+          threshold: 1200000,
         });
         if (sessionExpired) {
-          // console.error('Token is expired, reissuing');
           const refresher = await this.reissueAccessToken();
           await this.store.string({
             key: 'accessToken',
             value: refresher.access_token,
           });
+          this.accessToken = refresher.access_token;
           return true;
         } else {
+          this.accessToken = accessToken;
           return true;
         }
       } else {
@@ -53,6 +80,28 @@ export class SessionService {
     } catch (err) {
       throw err;
     }
+  }
+
+  // Pipe New Access Token
+  getNewAccessToken() {
+    const refreshToken = from(this.getRefresh());
+    const rts = this.getRefresh();
+    return refreshToken.pipe(
+      switchMap((token: any) => {
+        if (token) {
+          return this.http.post(`${environment.API_URL}/auth/token`, {
+            grant_type: 'refresh_token',
+            refresh_token: rts,
+          });
+        } else {
+          return of(null);
+        }
+      })
+    );
+  }
+
+  getRefresh(): string {
+    return String(this.refreshToken);
   }
 
   // Reissue Token Promise
@@ -66,8 +115,37 @@ export class SessionService {
         }
       );
       return tokenResponder;
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      if (err.error.errors) {
+        if (err.error.errors.toString().includes("invalid refresh_token")) {
+          this.logout();
+        }
+      }
+    }
+  }
+
+  async checkTokenExpiration(): Promise<void> {
+    try {
+      if (this.accessToken) {
+        const sessionExpired = await this.tokenExpired({
+          token: String(this.accessToken),
+          threshold: 1200000,
+        });
+        if (sessionExpired) {
+          console.error(
+            'Token expiration within 20 minutes, preemptive reissue init'
+          );
+          const refresher = await this.reissueAccessToken();
+          this.accessToken = refresher.access_token;
+          this.store.string({key: 'accessToken', value: String(refresher.access_token)});
+          return;
+        } else {
+          return;
+        }
+      }
+    } catch (err) {
+      console.error('Check Token Expiration', err);
     }
   }
 
@@ -84,7 +162,6 @@ export class SessionService {
       //   'Time Left: ' + (decoded.exp * 1000 - Date.now())
       // );
       const isExpired = decoded.exp * 1000 - Date.now() <= options.threshold;
-      // console.log(isExpired);
       return isExpired;
     } catch (err) {
       throw err;
@@ -95,50 +172,12 @@ export class SessionService {
     return await this.store.get({ key });
   }
 
-  async getLanderURI(): Promise<string> {
-    try {
-      const user: any = await this.getBasicUser();
-      if (user.type) {
-        return String(
-          `https://${user.type === 2 ? 'my' : 'hire'}.grindstoneapp.com/auth/cb`
-        );
-      } else {
-        return ``;
-      }
-    } catch (err) {
-      console.error(err);
-      return '';
-    }
-  }
-
   async logout(): Promise<void> {
     try {
       this.store.delete({ key: 'accessToken' });
       this.store.delete({ key: 'refreshToken' });
+      location.href = `https://accounts.grindstoneapp.com/o/oauth/logout`
       return;
-    } catch (err) {
-      throw err;
-    }
-  }
-
-  async getBasicUser(): Promise<any> {
-    try {
-      const user = {
-        id: 2,
-        name: 'Aiden Appleby',
-        email: 'aiden.appleby@yahoo.com',
-        type: 2,
-        phone_country_code: 1,
-        phone_number: '(650) 704-7422',
-        country: 'US',
-        location: '0xF30E00000101000000FB5C6DC5FEC242400B293FA9F6955EC0',
-        profile_image_url:
-          'https://user-content.grindstoneapp.com/profile_pictures/2.jpeg',
-        verified_email: 1,
-        verified_phone: 1,
-        inserted_at: '2021-01-16 06:24:03',
-      };
-      return user;
     } catch (err) {
       throw err;
     }
@@ -149,7 +188,6 @@ export class SessionService {
     refreshToken: string;
   }): Promise<void> {
     try {
-      console.log(options);
       if (options.accessToken.length === 0) {
         throw this.err.gen(['missing accessToken'], 'failed to begin session');
       }

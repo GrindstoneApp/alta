@@ -11,12 +11,12 @@
     <div class="page-body">
         <div class="page-left">
             <div class="avatar-container">
-                <div class="avatar"></div>
+                <div class="avatar reg-image" [ngStyle]="{'background-image': 'url(' + user.get().profile_image_url + ')'}"></div>
                 <button class="fullXCenter">Change Profile Picture</button>
             </div>
             <div class="input-element">
                 <span>Name</span>
-                <input type="text" placeholder="Enter your name">
+                <input type="text" placeholder="Enter your name" value="{{user.get().name}}">
             </div>
             <div class="input-element">
                 <span>Pronouns</span>
@@ -33,7 +33,7 @@
             </div>
             <div class="input-element icon">
                 <!-- Email SVG -->
-                <input type="text" placeholder="Email">
+                <input type="text" placeholder="Email" value="{{user.get().email}}">
             </div>
             <div class="input-element icon">
                 <!-- Website SVG -->

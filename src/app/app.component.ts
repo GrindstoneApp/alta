@@ -41,8 +41,13 @@ export class AppComponent implements OnInit {
   }
 
   async initialize(): Promise<void> {
-    console.log('Initial AppComp');
-    await this.session.initialize(); 
-    return;
+    try {
+      console.log('Initial AppComp');
+      await this.session.initialize(); 
+      return;
+    } catch(err) {
+      this.session.logout();
+      console.error(err)
+    }
   }
 }

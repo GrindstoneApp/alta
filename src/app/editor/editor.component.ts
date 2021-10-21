@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserProvider } from 'src/providers/user.provider';
 import { ModalService } from 'src/services/app-components/modal.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { ModalService } from 'src/services/app-components/modal.service';
 export class EditorComponent implements OnInit {
 
   constructor(
-    private modalService: ModalService
+    private modalService: ModalService,
+    public user: UserProvider,
   ) { }
 
   ngOnInit(): void {
