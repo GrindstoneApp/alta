@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RequestService } from 'src/services/http/request.service';
 import { ErrorService } from 'src/services/qas/error.service';
@@ -15,6 +15,9 @@ import { ModalComponent } from './components/modal/modal.component';
 import { UserProvider } from 'src/providers/user.provider';
 import { JwtInterceptor } from 'src/interceptor/jwt.interceptor';
 
+export function sessionServiceFactory(provider: SessionService) {
+  return () => provider.initialize();
+}
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { JwtInterceptor } from 'src/interceptor/jwt.interceptor';
     ErrorService,
     PaginationService,
     ModalService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: APP_INITIALIZER, multi: true, useFactory: sessionServiceFactory,  deps: [SessionService]}
   ],
   bootstrap: [AppComponent]
 })

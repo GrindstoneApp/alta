@@ -36,6 +36,7 @@ export class SessionService {
       } else {
         // Do Something
       }
+      console.log('done')
       return;
     } catch(err) { 
       throw err;

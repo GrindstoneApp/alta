@@ -41,6 +41,9 @@ export class UserProvider {
     }
 
     get(): User {
+        if(Object.keys(this.user).length === 0) {
+            
+        }
         return (Object.assign({}, this.user) as User);
     }
 

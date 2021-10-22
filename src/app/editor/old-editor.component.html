@@ -1,0 +1,48 @@
+<app-tutorial></app-tutorial>
+
+<div class="page-wrapper">
+    <div class="page-topbar">
+        <div class="logo-container fullYCenter">
+            <div class="logo"></div>
+            <h1>Grindstone</h1>
+        </div>
+        <span class="fullYCenter">Last saved 1 minute ago.</span>
+    </div>
+    <div class="page-body">
+        <div class="page-left">
+            <div class="avatar-container">
+                <div class="avatar reg-image" [ngStyle]="{'background-image': 'url(' + user.get().profile_image_url + ')'}"></div>
+                <button class="fullXCenter">Change Profile Picture</button>
+            </div>
+            <div class="input-element">
+                <span>Name</span>
+                <input type="text" placeholder="Enter your name" value="{{user.get().name}}">
+            </div>
+            <div class="input-element">
+                <span>Pronouns</span>
+                <input type="text" placeholder="Enter your pronouns">
+            </div>
+            <div class="input-element">
+                <span>Bio</span>
+                <h6>0/50 words</h6>
+                <textarea placeholder="Enter your bio"></textarea>
+            </div>
+            <div class="input-element icon">
+                <!-- Location Point SVG -->
+                <input type="text" placeholder="Location">
+            </div>
+            <div class="input-element icon">
+                <!-- Email SVG -->
+                <input type="text" placeholder="Email" value="{{user.get().email}}">
+            </div>
+            <div class="input-element icon">
+                <!-- Website SVG -->
+                <input type="text" placeholder="Website">
+            </div>
+            
+        </div>
+        <div class="page-right">
+            <button (click)="openTutorialModal();">Open Modal</button>
+        </div>
+    </div>
+</div>

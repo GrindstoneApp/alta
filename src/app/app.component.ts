@@ -19,7 +19,8 @@ export class AppComponent implements OnInit {
     private seoService: SeoService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+
     this.router.events
       .pipe(
         filter((e: any) => e instanceof NavigationEnd),
@@ -33,17 +34,25 @@ export class AppComponent implements OnInit {
       )
       .subscribe((data) => {
         let seoData = data['seo'];
-        this.seoService.updateTitle(seoData['title']);
-        this.seoService.updateMetaTags(seoData['metaTags']);
+
+        if(!seoData) return;
+
+        if(seoData['title']) {
+          this.seoService.updateTitle(seoData['title']);
+        }
+        if(seoData['metaTags']) {
+          this.seoService.updateMetaTags(seoData['metaTags']);
+        }
       });
 
-    this.initialize();
+    
   }
 
   async initialize(): Promise<void> {
     try {
       console.log('Initial AppComp');
       await this.session.initialize(); 
+      console.log('return');
       return;
     } catch(err) {
       this.session.logout();
