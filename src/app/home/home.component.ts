@@ -18,6 +18,11 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit, OnDestroy {
 
   deviceReady: boolean = false;
+  doneRecording: boolean = false;
+
+  timeLeft: number = 3
+  showTimeLeft: boolean = false;
+  showRecordControls: boolean = false;
 
   private config: any;
   private player: any; 
@@ -54,10 +59,45 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   beginButton(): void {
-    $('.vjs-record .vjs-device-button.vjs-control').click()
+    $('.vjs-record').click()
+  }
+
+  recordButton(): void {
+    this.showTimeLeft = true;
+    setTimeout(() => {
+      $('.puller').addClass('active')
+    }, 300)
+    const countdown = setInterval(() => {
+      if (this.timeLeft === 2) {
+        this.showRecordControls = true;
+      }
+      if (this.timeLeft === 1) {
+        clearInterval(countdown)
+        this.showTimeLeft = false;
+        $(".vjs-record-button").click();
+        setTimeout(() => {
+          $('.record-control').addClass('active')
+        }, 200)
+      } else {
+        this.timeLeft = this.timeLeft - 1
+      }
+    }, 1000)
+  }
+
+  stopRecord(): void {
+    $('.puller').hide()
+    $('.puller').removeClass('active')
+    this.showRecordControls = false;
+    $(".vjs-record-button").click();
+    this.doneRecording = true;
+  }
+
+  playVideo(): void {
+    $('.vjs-big-play-button').click();
   }
 
   ngAfterViewInit(): void {
@@ -77,6 +117,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.player.on('finishRecord', () => {
       console.log('finished recording: ', this.player.recordedData);
+      $('.puller').hide()
+      $('.puller').removeClass('active')
+      this.showRecordControls = false;
+      this.doneRecording = true;
     });
 
     this.player.on('error', (element: any, error: any) => {
@@ -86,6 +130,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.player.on('deviceError', () => {
       console.error('device error:', this.player.deviceErrorCode);
     });
+
+    this.beginButton();
   }
 
   ngOnDestroy(): void {

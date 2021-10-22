@@ -36,6 +36,7 @@ export class CbComponent implements OnInit {
       
       if (this.params.accessToken && this.params.refreshToken) {
         await this.session.begin({accessToken: this.params.accessToken, refreshToken: this.params.refreshToken});
+        await this.session.initialize();
         this.pagination.rootToPage('/editor')
       } else {
         this.pagination.rootToPage('/')
