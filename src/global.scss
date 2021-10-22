@@ -5,123 +5,131 @@
 @import 'styles/loader-icon.scss';
 
 p {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 html {
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    margin: 0px;
-    width: 100%;
-    padding: 0px;
-    height: 100vh;
-    overflow-x: hidden;
-    -moz-box-sizing: border-box;
-    overflow-y: scroll;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    letter-spacing: 0.3px;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
-    background-color: white !important;
-    scrollbar-color: light !important;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+  margin: 0px;
+  width: 100%;
+  padding: 0px;
+  height: 100vh;
+  overflow-x: hidden;
+  -moz-box-sizing: border-box;
+  overflow-y: scroll;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  letter-spacing: 0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  background-color: white !important;
+  scrollbar-color: light !important;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 button,
 textarea,
 input {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 .fs-splash {
-    position: fixed;
-    z-index: 20;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100vh;
-    background: black;
-    opacity: 0.2;
-    display: none;
+  position: fixed;
+  z-index: 20;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  opacity: 0.2;
+  display: none;
 }
 
 div {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    position: relative;
-    box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  position: relative;
+  box-sizing: border-box;
 }
 
-textarea, input {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    position: relative;
-    box-sizing: border-box;
+textarea,
+input {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .page-wrapper {
-    width: 100%;
-    height: 100vh;
-    position: relative;
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
 
 .reg-image {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .fullCenter {
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  position: absolute;
 }
 
 .fullXCenter {
-    transform: translateX(-50%);
-    left: 50%;
-    position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
 }
 
 .fullYCenter {
-    transform: translateY(-50%);
-    top: 50%;
-    position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  position: absolute;
 }
 
 .noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Old versions of Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
-  }
+}
 
-h1, h2, h3, h4, h5, h6, p, span {
-    margin: 0px;
-    color: black;
-    letter-spacing: 0.5px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  margin: 0px;
+  color: black;
+  letter-spacing: 0.5px;
 }
 
 input {
-    letter-spacing: 0.5px;
-    box-sizing: border-box;
+  letter-spacing: 0.5px;
+  box-sizing: border-box;
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -129,18 +137,25 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    border: 1px solid rgb(0, 0, 0);
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
-    font-size: 1rem !important;
-    -webkit-text-fill-color: rgb(0, 0, 0);
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-    transition: background-color 5000s ease-in-out 0s;
+  border: 1px solid rgb(0, 0, 0);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 1rem !important;
+  -webkit-text-fill-color: rgb(0, 0, 0);
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
-
 
 /* Device Button (large centered button at startup)
 --------------------------------------------------------------------------------
 */
-.vjs-record .vjs-device-button.vjs-control {
-    
+.vjs-control,
+.vjs-control-text,
+.vjs-control-bar,
+.vjs-record-canvas,
+.vjs-track-setting,
+.vjs-duration-display,
+.vjs-big-play-button,
+.vjs-default-button,
+.vjs-done-button {
+  display: none !important;
 }

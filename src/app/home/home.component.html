@@ -1,5 +1,19 @@
-<h1>Home Page</h1>
-<p>Welcome Home! User Authenticated</p>
-
-<button (click)="beginButton();" *ngIf="!deviceReady">Begin!</button>
-<video id="recorder" playsinline class="video-js vjs-default-skin"></video>
+<br>
+<br>
+<br>
+<div class="center fullCenter">
+    <div class="video-container">
+        <div class="record-control fullXCenter" *ngIf="showRecordControls" (click)="stopRecord()">
+            <div class="record-square fullCenter"></div>
+        </div>
+        <video id="recorder" playsinline class="video-js vjs-default-skin"></video>
+        <span class="time fullCenter" *ngIf="showTimeLeft">{{timeLeft}}</span>
+        <div class="left-puller puller"></div>
+        <div class="right-puller puller"></div>
+    </div>
+    <br>
+    <br>
+    <button (click)="beginButton();" *ngIf="!deviceReady">Begin!</button>
+    <button (click)="recordButton();" *ngIf="deviceReady && !doneRecording">Record</button>
+    <button (click)="playVideo();" *ngIf="doneRecording">Play</button>
+</div>
