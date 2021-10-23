@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit, OnDestroy {
           record: {
               audio: true,
               video: {
-                  width: { min: 640, ideal: 1280, max: 1920 },
-                  height: { min: 360, ideal: 720, max: 1080 }
+                  width: { min: 1280, ideal: 1920, max: 1920 },
+                  height: { min: 720, ideal: 1080, max: 1080 }
               },
               videoBitRate: 7000,
               videoMimeType: "video/webm;codecs=H264",
@@ -67,25 +67,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   recordButton(): void {
-    this.showTimeLeft = true;
+    $('.video-container .record-button').fadeOut(300)
+    $('.video-container .darken').fadeOut(300)
     setTimeout(() => {
-      $('.puller').addClass('active')
+      this.showTimeLeft = true;
+      setTimeout(() => {
+        $('.puller').addClass('active')
+      }, 300)
+      const countdown = setInterval(() => {
+        if (this.timeLeft === 2) {
+          this.showRecordControls = true;
+        }
+        if (this.timeLeft === 1) {
+          clearInterval(countdown)
+          this.showTimeLeft = false;
+          $(".vjs-record-button").click();
+          setTimeout(() => {
+            $('.record-control').addClass('active')
+          }, 200)
+        } else {
+          this.timeLeft = this.timeLeft - 1
+        }
+      }, 1000)
     }, 300)
-    const countdown = setInterval(() => {
-      if (this.timeLeft === 2) {
-        this.showRecordControls = true;
-      }
-      if (this.timeLeft === 1) {
-        clearInterval(countdown)
-        this.showTimeLeft = false;
-        $(".vjs-record-button").click();
-        setTimeout(() => {
-          $('.record-control').addClass('active')
-        }, 200)
-      } else {
-        this.timeLeft = this.timeLeft - 1
-      }
-    }, 1000)
   }
 
   stopRecord(): void {
@@ -109,6 +113,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.player.on('deviceReady', () => {
       console.log('device is ready!');
       this.deviceReady = true;
+      $('.video-container .splash').fadeOut(300)
     });
 
     this.player.on('startRecord', () => {
