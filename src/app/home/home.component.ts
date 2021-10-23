@@ -39,17 +39,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.config = {
       controls: true,
       bigPlayButton: true,
-      width: 854,
-      height: 480,
+      width: 1280,
+      height: 720,
       fluid: false,
       plugins: {
           record: {
               audio: true,
               video: {
-                  width: { min: 1920, ideal: 1920, max: 1920 },
-                  height: { min: 1080, ideal: 1080, max: 1080 }
+                  width: { min: 640, ideal: 1280, max: 1920 },
+                  height: { min: 360, ideal: 720, max: 1080 }
               },
-              videoBitRate: 8000,
+              videoBitRate: 7000,
               videoMimeType: "video/webm;codecs=H264",
               audioBufferSize: 16384,
               maxLength: 10,

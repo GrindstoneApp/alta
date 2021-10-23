@@ -20,7 +20,7 @@
         transition: 1.5s cubic-bezier(0.26, 0.01, 0.29, 0.99);
         top: 0px;
         &.active {
-            width: calc(50% - 480px / 2);
+            width: calc(50% - calc(100% / 3.5));
         }
         &.left-puller {
             left: 0px;
