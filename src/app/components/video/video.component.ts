@@ -21,23 +21,21 @@ export class VideoComponent implements OnInit, OnDestroy {
   showTimeLeft: boolean = false;
   showRecordControls: boolean = false;
 
+  videoWidth = 1280;
+  videoHeight = 720;
+
   private config: any;
   private player: any;
   private plugin: any;
-
-  // constructor initializes our declared vars
   constructor(elementRef: ElementRef) {
     this.player = true;
-
-    // save reference to plugin (so it initializes)
     this.plugin = Record;
 
-    // video.js configuration
     this.config = {
       controls: true,
       bigPlayButton: true,
-      width: 1280,
-      height: 720,
+      width: this.videoWidth,
+      height: this.videoHeight,
       fluid: false,
       plugins: {
         record: {

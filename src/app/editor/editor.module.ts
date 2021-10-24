@@ -4,6 +4,7 @@ import { EditorComponent } from './editor.component';
 import { EditorRoutingModule } from './editor-routing.module';
 import { TutorialModule } from '../components/tutorial/tutorial.module';
 import { ShareLinkModule } from '../components/share-link/share-link.module';
+import { VideoModule } from '../components/video/video.module';
 
 
 
@@ -15,7 +16,9 @@ import { ShareLinkModule } from '../components/share-link/share-link.module';
     CommonModule,
     EditorRoutingModule,
     TutorialModule,
-    ShareLinkModule
+    ShareLinkModule,
+    VideoModule,
+    TutorialModule
   ]
 })
 export class EditorModule { }
