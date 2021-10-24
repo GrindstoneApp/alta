@@ -13,6 +13,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   deviceReady: boolean = false;
   doneRecording: boolean = false;
 
+  lastTimestamp: string = ""
+  duplicateTimestamps: number = 0;
+
   timeLeft: number = 3;
   showTimeLeft: boolean = false;
   showRecordControls: boolean = false;
@@ -69,6 +72,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     $('.vjs-record').click();
   }
 
+  done(): void {
+
+  }
+
   recordButton(): void {
     $('.video-container .record-button').fadeOut(300);
     $('.video-container .darken').fadeOut(300);
@@ -109,11 +116,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     $('.video-container .darken').hide();
     const timeInterval = setInterval(() => {
       let time = $('.vjs-time-tooltip').text();
+      this.lastTimestamp = time;
       let duration = $('.vjs-duration-display').text();
       console.log(time, duration);
-      if (time === duration) {
-        console.log('ended');
+      if (time === this.lastTimestamp) {
+        this.duplicateTimestamps++;
+      }
+      if (this.duplicateTimestamps > 12) {
         clearInterval(timeInterval);
+        console.log('ended');
+        this.lastTimestamp = ""
+        this.duplicateTimestamps = 0
+        setTimeout(() => {
+          this.playbackEnded();
+        }, 500)
+      }
+      if (time === duration) {
+        clearInterval(timeInterval);
+        console.log('ended');
+        this.lastTimestamp = ""
+        this.duplicateTimestamps = 0
         setTimeout(() => {
           this.playbackEnded();
         }, 500)
