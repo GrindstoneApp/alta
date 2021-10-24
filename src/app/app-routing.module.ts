@@ -53,6 +53,10 @@ const routes: Routes = [
       }
     }
   },
+  {
+    path: ':route',
+    loadChildren: () => import('./preview/preview.module').then((m) => m.PreviewModule)
+  },
 ];
 
 @NgModule({
