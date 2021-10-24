@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import videojs from 'video.js';
 import * as Record from 'videojs-record/dist/videojs.record.js';
 import * as $ from 'jquery';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -46,11 +47,12 @@ export class HomeComponent implements OnInit, OnDestroy {
             width: { min: 1280, ideal: 1920, max: 1920 },
             height: { min: 720, ideal: 1080, max: 1080 },
           },
-          videoBitRate: 7000,
+          videoBitRate: 8000,
           videoMimeType: 'video/webm;codecs=H264',
           audioBufferSize: 16384,
           maxLength: 120,
           debug: true,
+          
         },
       },
     };
@@ -73,7 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   done(): void {
-
+    this.upload(this.player.recordedData);
   }
 
   recordButton(): void {
@@ -116,15 +118,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     $('.video-container .darken').hide();
     const timeInterval = setInterval(() => {
       let time = $('.vjs-time-tooltip').text();
-      this.lastTimestamp = time;
       let duration = $('.vjs-duration-display').text();
       console.log(time, duration);
       if (time === this.lastTimestamp) {
         this.duplicateTimestamps++;
+      } else {
+        this.duplicateTimestamps = 0;
       }
-      if (this.duplicateTimestamps > 12) {
+      this.lastTimestamp = time;
+      if (this.duplicateTimestamps > 15) {
         clearInterval(timeInterval);
-        console.log('ended');
+        console.log('ended due to duplicates');
         this.lastTimestamp = ""
         this.duplicateTimestamps = 0
         setTimeout(() => {
@@ -138,10 +142,28 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.duplicateTimestamps = 0
         setTimeout(() => {
           this.playbackEnded();
-        }, 500)
+        }, 700)
       }
     }, 100);
   }
+
+  upload(blob: any): void {
+    // var serverUrl = `${environment.API_URL}/ptfl/upload/video`;
+    var serverUrl = `http://localhost:8000/ptfl/upload/video`
+    var formData = new FormData();
+    formData.append('file', blob, blob.name);
+
+    console.log('upload recording ' + blob.name + ' to ' + serverUrl);
+
+    fetch(serverUrl, {
+        method: 'POST',
+        body: formData
+    }).then(
+        success => console.log('upload recording complete.')
+    ).catch(
+        error => console.error('an upload error occurred!')
+    );
+}
 
   playbackEnded(): void {
     $('.video-container .review-buttons').fadeIn(500);
