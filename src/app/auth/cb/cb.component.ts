@@ -33,7 +33,6 @@ export class CbComponent implements OnInit {
     try {
       const session = await this.session.sessionInService();
       if (session) {console.log("Session Exists"); this.pagination.rootToPage('/editor'); return;}
-      
       if (this.params.accessToken && this.params.refreshToken) {
         await this.session.begin({accessToken: this.params.accessToken, refreshToken: this.params.refreshToken});
         await this.session.initialize();
@@ -43,7 +42,7 @@ export class CbComponent implements OnInit {
         window.alert('failed to initialize session as the access token and refresh token does not exist')
       }
     } catch(err) {
-      
+      console.error(err)
     }
   }
 

@@ -14,6 +14,8 @@ import { ModalService } from 'src/services/app-components/modal.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { UserProvider } from 'src/providers/user.provider';
 import { JwtInterceptor } from 'src/interceptor/jwt.interceptor';
+import { PortfolioProvider } from 'src/providers/portfolio.provider';
+import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 
 export function sessionServiceFactory(provider: SessionService) {
   return () => provider.initialize();
@@ -31,9 +33,11 @@ export function sessionServiceFactory(provider: SessionService) {
   providers: [
     RequestService,
     SeoService,
+    PortfolioProvider,
     StorageService,
     UserProvider,
     SessionService,
+    PortfolioService,
     ErrorService,
     PaginationService,
     ModalService,

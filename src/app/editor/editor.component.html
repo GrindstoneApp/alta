@@ -27,25 +27,25 @@
           <p class="button-text">Change profile picture</p>
         </button>
         <div class="form-input-container">
-          <input type="text" [value]="profileFormData.name" id="profile-name-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);">
-          <p class="label" [ngClass]="{'active': oldProfileFormData.name?.length || 0 > 0}">Full Name</p>
+          <input type="text" data-profileKey="display_name" [value]="profileFormData.display_name" id="profile-name-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" (input)="formKeyup($event);">
+          <p class="label" [ngClass]="{'active': oldProfileFormData.display_name?.length || 0 > 0}">Full Name</p>
         </div>
         <div class="form-input-container">
-          <input type="text" id="profile-pronouns-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);">
-          <p class="label">Pronouns</p>
+          <input type="text" data-profileKey="pronouns" [value]="profileFormData.pronouns" id="profile-pronouns-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" (input)="formKeyup($event);">
+          <p class="label" [ngClass]="{'active': oldProfileFormData.pronouns?.length || 0 > 0}">Pronouns</p>
         </div>
         <div class="form-input-container">
-          <textarea type="text" id="profile-bio-input" [maxLength]="maxBioCharacterCount" (keydown)="preventEnterKey($event);" (input)="trackBioWordCount($event);" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" data-gramm_editor="false" data-enable-grammarly="false" data-gramm="false"></textarea>
-          <p class="label">Biography</p>
+          <textarea type="text" data-profileKey="bio" [value]="profileFormData.bio" id="profile-bio-input" [maxLength]="maxBioCharacterCount" (keydown)="preventEnterKey($event);" (input)="trackBioWordCount($event); formKeyup($event);" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" data-gramm_editor="false" data-enable-grammarly="false" data-gramm="false"></textarea>
+          <p class="label" [ngClass]="{'active': oldProfileFormData.bio?.length || 0 > 0}">Biography</p>
           <p class="bio-word-counter" *ngIf="bioCharacterCount > 0">{{bioCharacterCount}}/{{maxBioCharacterCount}}</p>
         </div>
         <div class="form-input-container">
-          <input type="text" id="profile-location-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);">
-          <p class="label">Location</p>
+          <input type="text" data-profileKey="location" [value]="profileFormData.location" id="profile-location-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" (input)="formKeyup($event);">
+          <p class="label" [ngClass]="{'active': oldProfileFormData.location?.length || 0 > 0}">Location</p>
         </div>
         <div class="form-input-container">
-          <input type="text" id="profile-location-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);">
-          <p class="label">Website URL</p>
+          <input type="text" data-profileKey="external_link" [value]="profileFormData.external_link" id="profile-website-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" (input)="formKeyup($event);">
+          <p class="label" [ngClass]="{'active': oldProfileFormData.external_link?.length || 0 > 0}">Website URL</p>
         </div>
         <button class="show-email-button active" (click)="toggleShowEmail($event);" [ngClass]="{'active': profileFormData.showEmail}">
           <div class="button-left-container">

@@ -10,6 +10,7 @@ import { User, UserProvider } from 'src/providers/user.provider';
 import { from, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Portfolio, PortfolioProvider } from 'src/providers/portfolio.provider';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,7 @@ export class SessionService {
     private err: ErrorService,
     private http: HttpClient,
     private user: UserProvider,
+    private portfolio: PortfolioProvider,
     private request: RequestService
   ) {}
 
@@ -45,10 +47,21 @@ export class SessionService {
 
   async initializeUser(): Promise<void> {
     try {
-      const response = await this.request.get(`${environment.API_URL}/auth/user`)
+      const response: any = await this.request.get(`${environment.API_URL}/auth/user`)
       this.user.set(response as User);
     } catch(err) { 
       console.error("failed to init user")
+      throw err
+    }
+  }
+
+  async initializePortfolio(): Promise<void> {
+    try {
+      const response: any = await this.request.get(`${environment.API_URL}/ptfl/grab/userPortfolios`)
+      if ( !response || response.length === 0 ) {throw this.err.gen(['user has no portfolios'], 'unable to find a portfolio')}
+      this.portfolio.set(response[0] as Portfolio);
+    } catch(err) { 
+      console.error("failed to init user portfolios")
       throw err
     }
   }
