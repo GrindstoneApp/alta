@@ -1,11 +1,12 @@
-<br>
-<br>
-<br>
 <div class="center fullCenter">
     <div class="video-container">
         <div class="splash reg-image"></div>
         <div class="darken"></div>
         <button class="record-button fullCenter" (click)="recordButton();" *ngIf="deviceReady && !doneRecording">Record</button>
+        <div class="review-buttons fullCenter">
+            <button (click)="restartVideo()">Start Over</button>
+            <button (click)="playVideo()">Play Recording</button>
+        </div>
         <div class="record-control fullXCenter" *ngIf="showRecordControls" (click)="stopRecord()">
             <div class="record-square fullCenter"></div>
         </div>
@@ -16,6 +17,4 @@
     </div>
     <br>
     <br>
-    <!-- <button (click)="beginButton();" *ngIf="!deviceReady">Begin!</button>
-    <button (click)="playVideo();" *ngIf="doneRecording">Play</button> -->
 </div>

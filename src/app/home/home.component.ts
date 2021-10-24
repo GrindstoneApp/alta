@@ -1,10 +1,4 @@
-
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ElementRef
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 
 import videojs from 'video.js';
 import * as Record from 'videojs-record/dist/videojs.record.js';
@@ -13,19 +7,18 @@ import * as $ from 'jquery';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.scss']
+  styleUrls: ['home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   deviceReady: boolean = false;
   doneRecording: boolean = false;
 
-  timeLeft: number = 3
+  timeLeft: number = 3;
   showTimeLeft: boolean = false;
   showRecordControls: boolean = false;
 
   private config: any;
-  private player: any; 
+  private player: any;
   private plugin: any;
 
   // constructor initializes our declared vars
@@ -43,69 +36,98 @@ export class HomeComponent implements OnInit, OnDestroy {
       height: 720,
       fluid: false,
       plugins: {
-          record: {
-              audio: true,
-              video: {
-                  width: { min: 1280, ideal: 1920, max: 1920 },
-                  height: { min: 720, ideal: 1080, max: 1080 }
-              },
-              videoBitRate: 7000,
-              videoMimeType: "video/webm;codecs=H264",
-              audioBufferSize: 16384,
-              maxLength: 10,
-              debug: true
-          }
-      }
-  };
+        record: {
+          audio: true,
+          timeSlice: 1000,
+          video: {
+            width: { min: 1280, ideal: 1920, max: 1920 },
+            height: { min: 720, ideal: 1080, max: 1080 },
+          },
+          videoBitRate: 7000,
+          videoMimeType: 'video/webm;codecs=H264',
+          audioBufferSize: 16384,
+          maxLength: 120,
+          debug: true,
+        },
+      },
+    };
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   beginButton(): void {
-    $('.vjs-record').click()
+    $('.vjs-record').click();
+  }
+
+  restartVideo(): void {
+    // this.player.reset();
+    this.timeLeft = 3;
+    this.showRecordControls = true;
+    $('.puller').show();
+    this.doneRecording = false;
+    $('.video-container .review-buttons').hide();
+    $('.vjs-record').click();
   }
 
   recordButton(): void {
-    $('.video-container .record-button').fadeOut(300)
-    $('.video-container .darken').fadeOut(300)
+    $('.video-container .record-button').fadeOut(300);
+    $('.video-container .darken').fadeOut(300);
     setTimeout(() => {
       this.showTimeLeft = true;
       setTimeout(() => {
-        $('.puller').addClass('active')
-      }, 300)
+        $('.puller').addClass('active');
+      }, 300);
       const countdown = setInterval(() => {
         if (this.timeLeft === 2) {
           this.showRecordControls = true;
         }
         if (this.timeLeft === 1) {
-          clearInterval(countdown)
+          clearInterval(countdown);
           this.showTimeLeft = false;
-          $(".vjs-record-button").click();
+          $('.vjs-record-button').click();
           setTimeout(() => {
-            $('.record-control').addClass('active')
-          }, 200)
+            $('.record-control').addClass('active');
+          }, 200);
         } else {
-          this.timeLeft = this.timeLeft - 1
+          this.timeLeft = this.timeLeft - 1;
         }
-      }, 1000)
-    }, 300)
+      }, 1000);
+    }, 300);
   }
 
   stopRecord(): void {
-    $('.puller').hide()
-    $('.puller').removeClass('active')
+    $('.puller').hide();
+    $('.puller').removeClass('active');
     this.showRecordControls = false;
-    $(".vjs-record-button").click();
+    $('.vjs-record-button').click();
     this.doneRecording = true;
   }
 
   playVideo(): void {
     $('.vjs-big-play-button').click();
+    $('.video-container .review-buttons').hide();
+    $('.video-container .darken').hide();
+    const timeInterval = setInterval(() => {
+      let time = $('.vjs-time-tooltip').text();
+      let duration = $('.vjs-duration-display').text();
+      console.log(time, duration);
+      if (time === duration) {
+        console.log('ended');
+        clearInterval(timeInterval);
+        setTimeout(() => {
+          this.playbackEnded();
+        }, 500)
+      }
+    }, 100);
+  }
+
+  playbackEnded(): void {
+    $('.video-container .review-buttons').fadeIn(500);
+    $('.video-container .darken').fadeIn(300);
   }
 
   ngAfterViewInit(): void {
-    let el = 'recorder'
+    let el = 'recorder';
     this.player = videojs('recorder', this.config, () => {
       console.log('player ready! id:', el);
     });
@@ -113,7 +135,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.player.on('deviceReady', () => {
       console.log('device is ready!');
       this.deviceReady = true;
-      $('.video-container .splash').fadeOut(300)
+      $('.video-container .splash').fadeOut(300);
     });
 
     this.player.on('startRecord', () => {
@@ -122,10 +144,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.player.on('finishRecord', () => {
       console.log('finished recording: ', this.player.recordedData);
-      $('.puller').hide()
-      $('.puller').removeClass('active')
+      $('.puller').hide();
+      $('.puller').removeClass('active');
       this.showRecordControls = false;
       this.doneRecording = true;
+      $('.video-container .darken').fadeIn(300);
+      $('.video-container .review-buttons').fadeIn(500);
+    });
+
+    this.player.on('timestamp', (e: any) => {
+      console.log(e);
     });
 
     this.player.on('error', (element: any, error: any) => {
@@ -145,5 +173,4 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.player = false;
     }
   }
-
 }
