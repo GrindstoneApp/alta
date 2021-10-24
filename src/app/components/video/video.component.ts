@@ -76,6 +76,14 @@ export class VideoComponent implements OnInit, OnDestroy {
     this.upload(this.player.recordedData);
   }
 
+  show(): void {
+    $('.video-player').show();
+  }
+
+  close(): void {
+    $('.video-player').hide();
+  }
+
   recordButton(): void {
     $('.video-container .record-button').fadeOut(300);
     $('.video-container .darken').fadeOut(300);

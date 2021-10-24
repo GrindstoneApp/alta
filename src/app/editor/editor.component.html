@@ -81,6 +81,7 @@
       </button>
     </div>
     <div class="module-editor-container">
+      <button (click)="recordVideo()">Record Video</button>
       <label>https://grst.one/</label><input type="text" placeholder="claimURL" id="claim-url-input">
       <input type="submit" value="Claim" (click)="claimURL()">
       <br>
@@ -94,4 +95,5 @@
 </div>
 
 <app-share-link [url]="profileLink"></app-share-link>
+<grindstone-video *ngIf="showVideoComp"></grindstone-video>
 <app-tutorial></app-tutorial>

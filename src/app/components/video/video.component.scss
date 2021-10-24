@@ -10,11 +10,22 @@
     }
 }
 
+.close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 19px;
+    right: 19px;
+    cursor: pointer;
+}
 
 .video-player {
     border-radius: 15px;
-    padding: 50px;
+    padding: 55px;
+    z-index: 80;
+    position: fixed;
     background: white;
+    display: none;
     border: 1px solid #2d2b381a;
     box-shadow: 0px 0px 10px 0px #00000024;
 }

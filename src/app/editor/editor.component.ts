@@ -7,6 +7,8 @@ import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 import * as $ from 'jquery';
 import { RequestService } from 'src/services/http/request.service';
 import { environment } from 'src/environments/environment';
+import { VideoModule } from '../components/video/video.module';
+import { VideoComponent } from '../components/video/video.component';
 
 type SaveButtonStatus = 'disabled' | 'active' | 'saving';
 
@@ -18,6 +20,7 @@ type SaveButtonStatus = 'disabled' | 'active' | 'saving';
 export class EditorComponent implements OnInit {
 
   public accountMenuActive = false;
+  public showVideoComp = false;
   public saveButtonStatus: SaveButtonStatus = 'disabled'
   public bioCharacterCount = 0;
   public maxBioCharacterCount = 150;
@@ -39,6 +42,7 @@ export class EditorComponent implements OnInit {
     private modalService: ModalService,
     private portfolioService: PortfolioService,
     public user: UserProvider,
+    private video: VideoComponent,
     public portfolio: PortfolioProvider,
     private request: RequestService,
     private session: SessionService,
@@ -105,6 +109,15 @@ export class EditorComponent implements OnInit {
     this.profileFormData = this.portfolio.get().profile;
     this.oldProfileFormData = this.profileFormData;
     this.profileLink = portfolio.routes[portfolio.routes.length - 1]?.url || "null"
+  }
+
+  recordVideo(): void {
+    var w = window.innerWidth;
+    console.log(w);
+    this.showVideoComp = true;
+    setTimeout(() => {
+      this.video.show();
+    })
   }
 
   openTutorialModal(): void {
