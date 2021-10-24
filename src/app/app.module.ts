@@ -18,7 +18,7 @@ import { PortfolioProvider } from 'src/providers/portfolio.provider';
 import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 
 export function sessionServiceFactory(provider: SessionService) {
-  return () => provider.initialize();
+  return () => provider.initialize()
 }
 
 @NgModule({

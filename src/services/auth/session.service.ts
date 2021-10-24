@@ -34,11 +34,11 @@ export class SessionService {
     try {
       const session = await this.sessionInService()
       if (session) {
-        const user = await this.initializeUser();
+        await this.initializeUser();
+        // await this.initializePortfolio();
       } else {
         // Do Something
       }
-      console.log('done')
       return;
     } catch(err) { 
       throw err;

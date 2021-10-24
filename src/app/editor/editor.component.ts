@@ -15,7 +15,7 @@ type SaveButtonStatus = 'disabled' | 'active' | 'saving';
 })
 export class EditorComponent implements OnInit {
 
-
+  public accountMenuActive = false;
   public saveButtonStatus: SaveButtonStatus = 'disabled'
   public bioCharacterCount = 0;
   public maxBioCharacterCount = 150;
@@ -40,17 +40,14 @@ export class EditorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.initializePortfolio();
-
   }
 
   async initializePortfolio(): Promise<void> {
     try {
       await this.session.initializePortfolio();
-      console.log(this.portfolio.get())
       this.setData();
-    } catch(err: any) { 
+    } catch(err: any) {
       if (err.error.errors && err.error.errors[0] === "user has no portfolios") {
         await this.portfolioService.create();
         // retry
@@ -61,12 +58,26 @@ export class EditorComponent implements OnInit {
     }
   }
 
+  toggleAccountMenu(): void {
+    this.accountMenuActive = !this.accountMenuActive
+  }
+
+  navigateToSupport(): void {
+    this.accountMenuActive = false;
+  }
+
+  logout(): void {
+    this.accountMenuActive = false;
+    this.session.logout();
+  }
+
   setData(): void {
     this.profileFormData = this.portfolio.get().profile;
     this.oldProfileFormData = this.profileFormData;
   }
 
   openTutorialModal(): void {
+    this.accountMenuActive = false;
     this.modalService.open("tutorial");
   }
 

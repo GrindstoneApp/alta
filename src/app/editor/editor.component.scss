@@ -8,8 +8,8 @@
 
 .nav-container {
   width: 100%;
-  height: 70px;
-  min-height: 70px;
+  height: 65px;
+  min-height: 65px;
   background: var(--primary-background);
   z-index: 3;
   border-bottom: 1px solid var(--navbar-border);
@@ -28,18 +28,18 @@
         display: flex;
         align-items: center;
         h1 {
-          font-size: 1.3rem;
+          font-size: 1.2rem;
           font-weight: 600;
         }
         .logo-container {
           background: var(--action-color);
-          width: 46px;
-          height: 46px;
+          width: 40px;
+          height: 40px;
           border-radius: 4px;
           margin-right: 10px;
           img {
-            width: 26px;
-            height: 26px;
+            width: 24px;
+            height: 24px;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -53,41 +53,116 @@
       height: 100%;
       display: flex;
       align-items: center;
-      .preview-button {
-        border: none;
+      .account-dropdown-button {
         background: transparent;
+        border: none;
+        outline: none;
+        display: flex;
         cursor: pointer;
-        width: 70px;
-        height: 70px;
-        border-left: 1px solid var(--navbar-border);
+        align-items: center;
         &:hover {
           svg {
-            fill: var(--primary-font);
+            *:not(rect) {
+              stroke: var(--action-color);
+            }
           }
         }
+        img {
+          width: 44px;
+          height: 44px;
+          border-radius: 44px;
+          margin-right: 5px;
+        }
         svg {
-          width: 34px;
-          height: 34px;
-          fill: var(--secondary-font);
-          transition: fill .2s;
+          width: 24px;
+          height: 24px;
+          stroke-width: 2.5px;
+          *:not(rect) {
+            transition: stroke .2s;
+          }
+        }
+      }
+      .account-dropdown-menu {
+        position: absolute;
+        right: 0;
+        border: 1px solid var(--navbar-border);
+        top: calc(100% + 15px);
+        background: #fff;
+        border-radius: 5px;
+        z-index: 10;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .3s, top .3s;
+        &.active {
+          top: calc(100% + 5px);
+          pointer-events: all;
+          opacity: 1;
+        }
+        .menu-top-container {
+          padding: 20px 15px;
+          border-bottom: 1px solid var(--navbar-border);
+          text-align: left;
+          .account-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+          }
+          .account-email {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--secondary-font);
+          }
+        }
+        .account-menu-button {
+          padding: 12px 15px;
+          width: 100%;
+          cursor: pointer;
+          text-align: left;
+          background: transparent;
+          font-size: 1rem;
+          font-weight: 500;
+          border: none;
+          transition: color .2s, background .2s;
+          &:hover {
+            background: var(--action-color);
+            color: #fff;
+          }
         }
       }
       .share-link-button {
-        width: 70px;
-        height: 70px;
-        background: var(--action-color);
+        border: none;
+        background: transparent;
         border: none;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
         transition: background .2s;
         &:hover {
-          background: var(--action-color-hovered);
+          p {
+            color: var(--action-color-hovered);
+          }
+          svg {
+            *:not(rect) {
+              stroke: var(--action-color-hovered);
+            }
+          }
         }
         svg {
-          width: 30px;
-          height: 30px;
+          width: 24px;
+          height: 24px;
+          margin-right: 5px;
           *:not(rect) {
-            stroke: #fff;
+            stroke: var(--action-color);
+            transition: stroke .2s;
           }
+        }
+        p {
+          font-size: 1.05rem;
+          font-weight: 500;
+          color: var(--action-color);
+          transition: color .2s;
         }
       }
     }
@@ -120,8 +195,13 @@
         cursor: pointer;
         margin: 50px auto 40px;
         display: block;
-        &:hover .button-text {
-          color: var(--action-color-hovered)
+        &:hover {
+          .profile-image .change-image-overlay {
+            opacity: 1;
+          }
+          .button-text {
+            color: var(--action-color-hovered)
+          }
         }
         .profile-image {
           background-color: var(--secondary-background);
@@ -130,8 +210,26 @@
           background-position: center;
           width: 180px;
           height: 180px;
+          overflow: hidden;
           border-radius: 200px;
           border: 1px solid var(--profile-image-border);
+          .change-image-overlay {
+            background: var(--change-image-overlay-color);
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            backdrop-filter: blur(4px);
+            transition: opacity .3s;
+            svg {
+              fill: #fff;
+              width: 50px;
+              height: 50px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
         }
         .button-text {
           font-size: 1rem;
@@ -161,7 +259,7 @@
           border-color: var(--action-color);
           background: var(--radio-button-active-background);
           .radio-button-dot {
-            box-shadow: inset 0 0 0 7px var(--action-color) !important;
+            box-shadow: inset 0 0 0 6px var(--action-color) !important;
           }
           .radio-button-text-title,
           .radio-button-text-description {
@@ -172,9 +270,9 @@
           display: flex;
           align-items: center;
           .radio-button-dot {
-            width: 28px;
-            height: 28px;
-            border-radius: 28px;
+            width: 24px;
+            height: 24px;
+            border-radius: 24px;
             box-shadow: inset 0 0 0 2px var(--input-border);
             margin-right: 15px;
             background: var(--primary-background);
@@ -252,6 +350,7 @@
     z-index: 1;
     width: 100%;
     height: 100%;
+    background: var(--secondary-background);
   }
 }
 

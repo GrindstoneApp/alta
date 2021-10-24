@@ -1,6 +1,6 @@
 html {
   --primary-background: #fff;
-  --secondary-background: #F0F2F5;
+  --secondary-background: #F5F8FA;
   
   --modal-overlay-background: rgba(10,29,47,0.5);
   --modal-background: #fff;
@@ -13,18 +13,23 @@ html {
   --tutorial-page-counter-dot-inactive: #dce1e7;
   --tutorial-page-counter-dot-active: #2564FD;
 
+  --navbar-background: rgb(30, 34, 41);
+  --navbar-border: #D8DEE3;
+  --navbar-primary-font: #fff;
 
-  --navbar-border: #DEE5EF;
-  --sidebar-border: #DEE5EF;
-  --profile-image-border: #DEE5EF;
 
-  --input-border: #DEE5EF;
+  --sidebar-border: #D8DEE3;
+  --profile-image-border: #D8DEE3;
 
-  --disabled-button-background: #DEE5EF;
-  --disabled-button-color: #777a86;
+  --input-border: #D8DEE3;
+
+  --disabled-button-background: #D8DEE3;
+  --disabled-button-color: #6f7280;
 
   --radio-button-active-background: rgba(37, 98, 253, 0.1);
 
   --save-button-box-shadow: rgba(0,0,0, 0.1);
+
+  --change-image-overlay-color: rgba(3, 58, 197, 0.5);
 
 }
