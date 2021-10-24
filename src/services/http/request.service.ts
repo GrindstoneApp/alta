@@ -21,12 +21,19 @@ export class RequestService {
     });
   }
 
-  get(url: string) {
+  get(url: string, observe=false) {
     return new Promise((resolve, reject) => {
-      this.http.get(url).subscribe(
-        respon => resolve(respon),
-        error => reject(error)
-      );
+      if (observe) {
+        this.http.get(url, {observe: 'response'}).subscribe(
+          respon => resolve(respon),
+          error => reject(error)
+        );
+      } else {
+        this.http.get(url).subscribe(
+          respon => resolve(respon),
+          error => reject(error)
+        );
+      }
     });
   }
 

@@ -80,7 +80,16 @@
         <p>Save</p>
       </button>
     </div>
-    <div class="module-editor-container"></div>
+    <div class="module-editor-container">
+      <label>https://grst.one/</label><input type="text" placeholder="claimURL" id="claim-url-input">
+      <input type="submit" value="Claim" (click)="claimURL()">
+      <br>
+      <br>
+      Routes:
+      <ul>
+        <li *ngFor="let route of portfolio.get().routes">{{route.url}}</li>
+      </ul>
+    </div>
   </div>
 </div>
 

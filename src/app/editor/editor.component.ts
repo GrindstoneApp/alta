@@ -5,6 +5,8 @@ import { ModalService } from 'src/services/app-components/modal.service';
 import { SessionService } from 'src/services/auth/session.service';
 import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 import * as $ from 'jquery';
+import { RequestService } from 'src/services/http/request.service';
+import { environment } from 'src/environments/environment';
 
 type SaveButtonStatus = 'disabled' | 'active' | 'saving';
 
@@ -36,11 +38,34 @@ export class EditorComponent implements OnInit {
     private portfolioService: PortfolioService,
     public user: UserProvider,
     public portfolio: PortfolioProvider,
+    private request: RequestService,
     private session: SessionService,
   ) { }
 
   ngOnInit() {
     this.initializePortfolio();
+  }
+
+  async claimURL(): Promise<void> {
+    try {
+      const route: string = String($('#claim-url-input').val()).trim();
+      const response: any = await this.request.get(`${environment.API_URL}/ptfl/check/route/${route}`, true)
+      if(response.status === 202) {
+        // Available
+        const data = {
+          portfolio_id: this.portfolio.get().id,
+          url: route,
+        }
+        const claimRequest: any = await this.request.post(`${environment.API_URL}/ptfl/create/route`, data)
+        this.session.initializePortfolio();
+        window.alert('Successfully claimed this url.')
+      } else {
+        // Unavailable
+        window.alert('This URL is already taken.')
+      }
+    } catch(err) { 
+      console.error(err)
+    }
   }
 
   async initializePortfolio(): Promise<void> {
