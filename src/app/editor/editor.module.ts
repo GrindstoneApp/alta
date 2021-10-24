@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EditorComponent } from './editor.component';
 import { EditorRoutingModule } from './editor-routing.module';
 import { TutorialModule } from '../components/tutorial/tutorial.module';
+import { ShareLinkModule } from '../components/share-link/share-link.module';
 
 
 
@@ -13,7 +14,8 @@ import { TutorialModule } from '../components/tutorial/tutorial.module';
   imports: [
     CommonModule,
     EditorRoutingModule,
-    TutorialModule
+    TutorialModule,
+    ShareLinkModule
   ]
 })
 export class EditorModule { }

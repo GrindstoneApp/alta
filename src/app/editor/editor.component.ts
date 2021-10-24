@@ -30,6 +30,8 @@ export class EditorComponent implements OnInit {
     display_email: false
   }
   public oldProfileFormData: Profile = this.profileFormData;
+  public profileLink: string = "";
+
 
   changes: boolean = false;
 
@@ -97,13 +99,22 @@ export class EditorComponent implements OnInit {
   }
 
   setData(): void {
+    const portfolio = this.portfolio.get()
+    console.log(portfolio)
+    
     this.profileFormData = this.portfolio.get().profile;
     this.oldProfileFormData = this.profileFormData;
+    this.profileLink = portfolio.routes[portfolio.routes.length - 1]?.url || "null"
   }
 
   openTutorialModal(): void {
     this.accountMenuActive = false;
     this.modalService.open("tutorial");
+  }
+
+  openShareLinkModal(): void {
+    this.accountMenuActive = false;
+    this.modalService.open("share-link");
   }
 
   formInputFocused(e: any): void {
