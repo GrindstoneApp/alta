@@ -13,7 +13,7 @@ export interface Profile {
     bio?: string;
     location?: string;
     external_link?: string;
-    showEmail?: boolean;
+    display_email?: boolean;
 }
 
 @Injectable({

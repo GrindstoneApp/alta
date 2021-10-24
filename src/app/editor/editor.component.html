@@ -47,7 +47,7 @@
           <input type="text" data-profileKey="external_link" [value]="profileFormData.external_link" id="profile-website-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" (input)="formKeyup($event);">
           <p class="label" [ngClass]="{'active': oldProfileFormData.external_link?.length || 0 > 0}">Website URL</p>
         </div>
-        <button class="show-email-button active" (click)="toggleShowEmail($event);" [ngClass]="{'active': profileFormData.showEmail}">
+        <button class="show-email-button active" (click)="toggleShowEmail($event);" [ngClass]="{'active': profileFormData.display_email}">
           <div class="button-left-container">
             <div class="radio-button-dot"></div>
             <div class="radio-button-text-container">
