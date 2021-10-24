@@ -54,6 +54,7 @@ export class EditorComponent implements OnInit {
       if (err.error.errors && err.error.errors[0] === "user has no portfolios") {
         await this.portfolioService.create();
         // retry
+        this.openTutorialModal();
         this.initializePortfolio();
       }
       console.error(err)
