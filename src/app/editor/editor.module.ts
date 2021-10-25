@@ -8,6 +8,8 @@ import { VideoModule } from '../components/video/video.module';
 import { AddModuleModule } from '../components/add-module/add-module.module';
 import { WorkExperienceModule } from '../components/portfolio-modules/work-experience/work-experience.module';
 import { VolunteerExperienceModule } from '../components/portfolio-modules/volunteer-experience/volunteer-experience.module';
+import { ClubsModule } from '../components/portfolio-modules/clubs/clubs.module';
+import { ClassesModule } from '../components/portfolio-modules/classes/classes.module';
 
 
 
@@ -24,6 +26,8 @@ import { VolunteerExperienceModule } from '../components/portfolio-modules/volun
     TutorialModule,
     AddModuleModule,
     WorkExperienceModule,
+    ClubsModule,
+    ClassesModule,
     VolunteerExperienceModule,
   ]
 })

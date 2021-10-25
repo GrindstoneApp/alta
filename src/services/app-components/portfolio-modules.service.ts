@@ -1,5 +1,9 @@
 /* eslint-disable max-len */
 import { Injectable, ComponentFactoryResolver } from '@angular/core';
+import { ClassesComponent } from 'src/app/components/portfolio-modules/classes/classes.component';
+import { ClubsComponent } from 'src/app/components/portfolio-modules/clubs/clubs.component';
+import { InterestsComponent } from 'src/app/components/portfolio-modules/interests/interests.component';
+import { SkillsComponent } from 'src/app/components/portfolio-modules/skills/skills.component';
 import { VolunteerExperienceComponent } from 'src/app/components/portfolio-modules/volunteer-experience/volunteer-experience.component';
 import { WorkExperienceComponent } from 'src/app/components/portfolio-modules/work-experience/work-experience.component';
 import { environment } from 'src/environments/environment';
@@ -14,6 +18,10 @@ export class PortfolioModulesService {
   private components: any = {
     "component-1": WorkExperienceComponent,
     "component-2": VolunteerExperienceComponent,
+    "component-3": SkillsComponent,
+    "component-4": ClubsComponent,
+    "component-5": ClassesComponent,
+    "component-6": InterestsComponent,
   }
   private loadedComponents: Array<any> = [];
 

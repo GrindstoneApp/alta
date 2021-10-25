@@ -17,13 +17,14 @@ import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 import { VideoComponent } from './components/video/video.component';
 import { PortfolioModulesService } from 'src/services/app-components/portfolio-modules.service';
 
+
 export function sessionServiceFactory(provider: SessionService) {
   return () => provider.initialize()
 }
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
