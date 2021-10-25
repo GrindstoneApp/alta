@@ -55,6 +55,19 @@ export class PortfolioService {
         }
     }
 
+    async addModule(id: number, portfolio: number): Promise<any> {
+        try {
+            const data = {
+                portfolio_id: portfolio,
+                type: id,
+              }
+            const response: any = await this.request.post(`${environment.API_URL}/ptfl/create/module`, data);
+            return response;
+        } catch(err) {
+            throw err;
+        }
+    }
+
     async deleteModule(id: number): Promise<any> {
         try {
             const data = {

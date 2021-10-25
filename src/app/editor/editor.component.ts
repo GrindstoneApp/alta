@@ -136,11 +136,13 @@ export class EditorComponent implements OnInit {
     this.loadingModules = false;
   }
 
-  addNewModule = (data: any): void => {
+  addNewModule = async (id: any): Promise<void> => {
     this.loadingModules = true;
+    const response = await this.portfolioService.addModule(id, this.portfolio.get().id);
+    if(!response) return;
     setTimeout(async () => {
       await this.session.initializePortfolio();
-      this.portfolioModulesService.addComponent(data.id, 1, this.modulesContainer, {
+      this.portfolioModulesService.addComponent(response.id, 1, this.modulesContainer, {
         title: 'Work Experience',
         formData: {},
         removeCallback: this.confirmRemoveComponent

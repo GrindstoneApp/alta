@@ -20,29 +20,17 @@ export class AddModuleComponent implements OnInit {
   constructor(
     private modalService: ModalService,
     private request: RequestService,
-    private session: SessionService,
     private portfolio: PortfolioProvider,
     private portfolioService: PortfolioService
   ) { }
 
   async ngOnInit(): Promise<void> {
     this.modules = await this.portfolioService.getModules() || [];
-    console.log(this.modules);
   }
 
-  async addModule(id: number): Promise<void> {
-    // add module
-    try {
-      const data = {
-        portfolio_id: this.portfolio.get().id,
-        type: id,
-      }
-      const response: any = await this.request.post(`${environment.API_URL}/ptfl/create/module`, data)
-      this.close();
-      this.addCallback(response);
-    } catch(err) { 
-      console.error(err)
-    }
+  addModule(id: number): void {
+    this.close();
+    this.addCallback(id);
   }
   
   close(): void {
