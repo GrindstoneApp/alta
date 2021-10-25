@@ -1,2 +1,16 @@
-<p>Preview Page</p>
-<p>{{stringPortfolio}}</p>
+<div class="page-container">
+  <div class="profile-container">
+    <div class="profile-content-container">
+      <img class="profile-image" [src]="portfolio.user.profile_image_url" alt="Profile picture">
+      <h1 class="profile-display-name">{{portfolio.profile.display_name}}</h1>
+      <p class="profile-pronouns">{{portfolio.profile.pronouns}}</p>
+      <p class="profile-bio">{{portfolio.profile.bio}}</p>
+      <div class="profile-buttons-container">
+        <button class="profile-button"></button>
+        <button class="profile-button"></button>
+        <button class="profile-button"></button>
+      </div>
+    </div>
+  </div>
+  <div class="modules-container"></div>
+</div>
