@@ -93,6 +93,23 @@ export class EditorComponent implements OnInit {
     $('#avatar-upload-input').click();
   }
 
+  async avatarUploadInputChange(e: Event): Promise<void> {
+    try {
+      const element = e.currentTarget as HTMLInputElement;
+      let fileList: FileList | null = element.files;
+      if (fileList) {
+        console.log("FileUpload -> files", fileList[0]);
+        var formData = new FormData();
+        formData.append('file', fileList[0], fileList[0].name);
+        const response: any = await this.request.post(`${environment.API_URL}/ptfl/upload/avatar`, formData)
+        console.log(response)
+        this.user.setKey("profile_image_url", `https://user-content.grindstoneapp.com/profile_pictures/${this.user.get().id}.jpeg?timeStamp=${Date.now()}`)
+      }
+    } catch(err) { 
+      console.error(err)
+    } 
+  }
+
   toggleAccountMenu(): void {
     this.accountMenuActive = !this.accountMenuActive
   }
