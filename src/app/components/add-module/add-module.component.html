@@ -7,39 +7,11 @@
       </button>
     </div>
     <div class="modules-buttons-container">
-      <button class="add-module-button">
-        <p class="icon">💼</p>
+      <button class="add-module-button" *ngFor="let m of modules" (click)="addModule(m.id)">
+        <p class="icon">{{m.icon}}</p>
         <div>
-          <p class="module-name">Work Experience</p>
-          <p class="module-description">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-        </div>
-      </button>
-      <button class="add-module-button">
-        <p class="icon">📊</p>
-        <div>
-          <p class="module-name">Skills</p>
-          <p class="module-description">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-        </div>
-      </button>
-      <button class="add-module-button">
-        <p class="icon">🎓</p>
-        <div>
-          <p class="module-name">Academics</p>
-          <p class="module-description">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-        </div>
-      </button>
-      <button class="add-module-button">
-        <p class="icon">👷</p>
-        <div>
-          <p class="module-name">Volunteer Experience</p>
-          <p class="module-description">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-        </div>
-      </button>
-      <button class="add-module-button">
-        <p class="icon">🏫</p>
-        <div>
-          <p class="module-name">School Activity</p>
-          <p class="module-description">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+          <p class="module-name">{{m.name}}</p>
+          <p class="module-description">{{m.description}}</p>
         </div>
       </button>
     </div>

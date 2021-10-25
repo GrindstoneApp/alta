@@ -46,4 +46,13 @@ export class PortfolioService {
    
     }
 
+    async getModules(): Promise<any> {
+        try {
+            const response: any = await this.request.get(`${environment.API_URL}/ptfl/grab/moduleList`);
+            return response;
+        } catch(err) {
+            throw err;
+        }
+    }
+
 }

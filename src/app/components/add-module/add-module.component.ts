@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/services/app-components/modal.service';
+import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 
 @Component({
   selector: 'app-add-module',
@@ -8,12 +9,20 @@ import { ModalService } from 'src/services/app-components/modal.service';
 })
 export class AddModuleComponent implements OnInit {
 
+  public modules: Array<any> = [];
+
   constructor(
-    private modalService: ModalService
+    private modalService: ModalService,
+    private portfolioService: PortfolioService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.modules = await this.portfolioService.getModules() || [];
+    console.log(this.modules);
+  }
 
+  addModule(id: number): void {
+    // add module
   }
   
   close(): void {
