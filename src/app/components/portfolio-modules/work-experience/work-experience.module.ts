@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WorkExperienceComponent } from './work-experience.component';
+import { MasterPortfolioModuleModule } from '../../master-portfolio-module/master-portfolio-module.module';
 
 
 
@@ -9,7 +10,8 @@ import { WorkExperienceComponent } from './work-experience.component';
     WorkExperienceComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MasterPortfolioModuleModule
   ],
   exports: [
     WorkExperienceComponent

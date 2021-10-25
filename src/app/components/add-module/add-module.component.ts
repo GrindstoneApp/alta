@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { PortfolioProvider } from 'src/providers/portfolio.provider';
 import { ModalService } from 'src/services/app-components/modal.service';
@@ -13,6 +13,8 @@ import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 })
 export class AddModuleComponent implements OnInit {
 
+  @Input() addCallback: any;
+  
   public modules: Array<any> = [];
 
   constructor(
@@ -36,9 +38,8 @@ export class AddModuleComponent implements OnInit {
         type: id,
       }
       const response: any = await this.request.post(`${environment.API_URL}/ptfl/create/module`, data)
-      console.log(response);
       this.close();
-      this.session.initializePortfolio();
+      this.addCallback(response);
     } catch(err) { 
       console.error(err)
     }

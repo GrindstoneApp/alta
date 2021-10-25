@@ -83,8 +83,11 @@
       </button>
     </div>
     <div class="module-editor-container">
-      <ng-template #modulesContainer class="module-components-container"></ng-template>
-      <button class="add-module-button" (click)="openAddModuleModal();">
+      <div class="module-components-container">
+        <ng-template #modulesContainer></ng-template>
+      </div>
+      <div class="loader-icon blue" [ngClass]="{'hidden': !loadingModules}"></div>
+      <button class="add-module-button" (click)="openAddModuleModal();" [ngClass]="{'hidden': loadingModules}">
         <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line><line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line></svg>
         <p class="button-text">Add Module ({{portfolio.get().modules ? portfolio.get().modules.length : 0}}/5)</p>
       </button>
@@ -92,7 +95,8 @@
   </div>
 </div>
 
-<app-add-module></app-add-module>
+<app-add-module [addCallback]="addNewModule"></app-add-module>
 <app-share-link [url]="profileLink"></app-share-link>
 <grindstone-video *ngIf="showVideoComp"></grindstone-video>
 <app-tutorial></app-tutorial>
+<app-confirm-delete-module [confirmCallback]="removeComponent"></app-confirm-delete-module>

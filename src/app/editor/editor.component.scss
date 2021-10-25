@@ -354,20 +354,31 @@
     width: 100%;
     height: 100%;
     background: var(--secondary-background);
+    .module-components-container {
+      max-width: 900px;
+      width: 90%;
+      margin: 50px auto 0;
+    }
+    .loader-icon {
+      margin: 50px auto 0;
+      &.hidden {
+        display: none;
+      }
+    }
     .add-module-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       background: var(--action-color);
       padding: 18px 30px;
       border-radius: 4px;
+      margin: 50px auto 0;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background .2s;
+      &.hidden {
+        display: none;
+      }
       &:hover {
         background: var(--action-color-hovered);
       }

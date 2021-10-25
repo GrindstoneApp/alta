@@ -18,6 +18,12 @@
   transform: translateZ(0);
   -webkit-animation: load8 0.5s infinite linear;
   animation: load8 0.5s infinite linear;
+  &.blue {
+    border-top: 0.3em solid var(--blue-loader-border);
+    border-right: 0.3em solid var(--blue-loader-border);
+    border-bottom: 0.3em solid var(--blue-loader-border);
+    border-left: 0.3em solid var(--blue-loader-fill);
+  }
 }
 @-webkit-keyframes load8 {
   0% {

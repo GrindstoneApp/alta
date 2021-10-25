@@ -37,6 +37,8 @@ export class EditorComponent implements OnInit {
   }
   public oldProfileFormData: Profile = this.profileFormData;
   public profileLink: string = "";
+  public loadingModules: boolean = true;
+  private currentConfirmDeleteModule: number = -1;
 
 
   changes: boolean = false;
@@ -115,13 +117,49 @@ export class EditorComponent implements OnInit {
   }
 
   openAddModuleModal(): void {
-    // this.modalService.open("add-module");
-    // this.portfolioModulesService.addComponent(1, this.modulesContainer)
+    
     if ((this.portfolio.get().modules ? this.portfolio.get().modules.length : 0) >= 5) {
       window.alert("maximum modules reached")
     } else {
       this.modalService.open("add-module");
     }
+  }
+
+  addModules = (modules: Array<any>): void => {
+    modules.forEach(m => {
+      this.portfolioModulesService.addComponent(m.id, m.module_type.id, this.modulesContainer, {
+        title: m.module_type.name,
+        formData: {},
+        removeCallback: this.confirmRemoveComponent
+      });
+    });
+    this.loadingModules = false;
+  }
+
+  addNewModule = (data: any): void => {
+    this.loadingModules = true;
+    setTimeout(async () => {
+      await this.session.initializePortfolio();
+      this.portfolioModulesService.addComponent(data.id, 1, this.modulesContainer, {
+        title: 'Work Experience',
+        formData: {},
+        removeCallback: this.confirmRemoveComponent
+      });
+      this.loadingModules = false;
+    }, 200);
+    
+  }
+
+  confirmRemoveComponent = (id: number): void => {
+    this.currentConfirmDeleteModule = id;
+    this.modalService.open("confirm-delete-module");
+  }
+  
+  removeComponent = async (): Promise<void> => {
+    const deleted = await this.portfolioService.deleteModule(this.currentConfirmDeleteModule);
+    if(!deleted) return;
+    await this.session.initializePortfolio();
+    this.portfolioModulesService.removeComponent(this.currentConfirmDeleteModule, this.modulesContainer);
   }
 
   toggleAccountMenu(): void {
@@ -139,7 +177,6 @@ export class EditorComponent implements OnInit {
 
   public setData(): void {
     const portfolio = this.portfolio.get()
-    console.log(portfolio)
     
     this.profileFormData = this.portfolio.get().profile;
     this.oldProfileFormData = this.profileFormData;
@@ -147,7 +184,8 @@ export class EditorComponent implements OnInit {
       this.profileLink = portfolio.routes[portfolio.routes.length - 1]?.url || ""
     }
     if(portfolio.modules) {
-      this.numPortfolios = portfolio.modules.length
+      this.numPortfolios = portfolio.modules.length;
+      this.addModules(portfolio.modules);
     }
     console.log(this.profileLink)
     this.bioCharacterCount = this.profileFormData.bio?.length || 0;

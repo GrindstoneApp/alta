@@ -1,0 +1,37 @@
+.modal-container {
+  background: var(--modal-background);
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.1);
+  padding: 30px 0;
+  .action-buttons-container {
+    margin: 50px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      border: none;
+      cursor: pointer;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-radius: 3px;
+      transition: background .2s;
+    }
+    .confirm-button {
+      background: var(--confirm-delete-module-button);
+      color: var(--confirm-delete-module-button-font);
+      &:hover {
+        background: var(--confirm-delete-module-button-hovered);
+      }
+    }
+    .cancel-button {
+      margin-right: 10px;
+      background: var(--cancel-delete-module-button);
+      color: var(--cancel-delete-module-button-font);
+      &:hover {
+        background: var(--cancel-delete-module-button-hovered);
+      }
+    }
+  }
+}

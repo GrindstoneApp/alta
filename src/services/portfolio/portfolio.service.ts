@@ -55,4 +55,17 @@ export class PortfolioService {
         }
     }
 
+    async deleteModule(id: number): Promise<any> {
+        try {
+            const data = {
+                module_id: id,
+                status: 2
+            };
+            const response: any = await this.request.post(`${environment.API_URL}/ptfl/update/module`, data)
+            return response.status?.id === 2 || false;
+        } catch(err) { 
+            throw err;
+        }
+    }
+
 }
