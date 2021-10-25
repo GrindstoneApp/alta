@@ -15,6 +15,7 @@ import { JwtInterceptor } from 'src/interceptor/jwt.interceptor';
 import { PortfolioProvider } from 'src/providers/portfolio.provider';
 import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 import { VideoComponent } from './components/video/video.component';
+import { PortfolioModulesService } from 'src/services/app-components/portfolio-modules.service';
 
 export function sessionServiceFactory(provider: SessionService) {
   return () => provider.initialize()
@@ -41,6 +42,7 @@ export function sessionServiceFactory(provider: SessionService) {
     ErrorService,
     PaginationService,
     ModalService,
+    PortfolioModulesService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: APP_INITIALIZER, multi: true, useFactory: sessionServiceFactory,  deps: [SessionService]}
   ],

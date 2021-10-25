@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
 import { Portfolio, PortfolioProvider, Profile } from 'src/providers/portfolio.provider';
 import { UserProvider } from 'src/providers/user.provider';
 import { ModalService } from 'src/services/app-components/modal.service';
@@ -7,8 +7,8 @@ import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 import * as $ from 'jquery';
 import { RequestService } from 'src/services/http/request.service';
 import { environment } from 'src/environments/environment';
-import { VideoModule } from '../components/video/video.module';
 import { VideoComponent } from '../components/video/video.component';
+import { PortfolioModulesService } from 'src/services/app-components/portfolio-modules.service';
 
 type SaveButtonStatus = 'disabled' | 'active' | 'saving';
 
@@ -18,6 +18,8 @@ type SaveButtonStatus = 'disabled' | 'active' | 'saving';
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit {
+
+  @ViewChild('modulesContainer', {read: ViewContainerRef}) modulesContainer?: ViewContainerRef;
 
   public accountMenuActive = false;
   public showVideoComp = false;
@@ -47,7 +49,8 @@ export class EditorComponent implements OnInit {
     public portfolio: PortfolioProvider,
     private request: RequestService,
     private session: SessionService,
-  ) { }
+    private portfolioModulesService: PortfolioModulesService
+  ) {}
 
   ngOnInit() {
     this.initializePortfolio();
@@ -112,7 +115,8 @@ export class EditorComponent implements OnInit {
   }
 
   openAddModuleModal(): void {
-    this.modalService.open("add-module");
+    // this.modalService.open("add-module");
+    this.portfolioModulesService.addComponent(1, this.modulesContainer)
   }
 
   toggleAccountMenu(): void {

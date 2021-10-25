@@ -6,6 +6,7 @@ import { TutorialModule } from '../components/tutorial/tutorial.module';
 import { ShareLinkModule } from '../components/share-link/share-link.module';
 import { VideoModule } from '../components/video/video.module';
 import { AddModuleModule } from '../components/add-module/add-module.module';
+import { WorkExperienceModule } from '../components/portfolio-modules/work-experience/work-experience.module';
 
 
 
@@ -20,7 +21,8 @@ import { AddModuleModule } from '../components/add-module/add-module.module';
     ShareLinkModule,
     VideoModule,
     TutorialModule,
-    AddModuleModule
+    AddModuleModule,
+    WorkExperienceModule
   ]
 })
 export class EditorModule { }
