@@ -137,7 +137,7 @@ export class EditorComponent implements OnInit {
     this.session.logout();
   }
 
-  setData(): void {
+  public setData(): void {
     const portfolio = this.portfolio.get()
     console.log(portfolio)
     

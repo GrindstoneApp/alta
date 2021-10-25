@@ -6,6 +6,16 @@
   padding: 20px 20px 40px;
 }
 
+.copy-link-container input {
+  position: absolute;
+  left: 135px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: none;
+  color: #2250bf;
+  outline: none;
+}
+
 .modal-top-container {
   display: flex;
   align-items: center;

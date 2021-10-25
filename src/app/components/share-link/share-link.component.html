@@ -8,8 +8,9 @@
     </div>
     <p class="modal-subtitle">Copy and paste the link below to share your Grindstone profile.</p>
     <div class="copy-link-container">
-      <a class="link" href="https://grst.one/{{url}}" target="_blank">https://grst.one/<strong>{{url}}</strong></a>
-      <button class="copy-link-button" (click)="copyLink();">Copy Link</button>
+      <a class="link" href="https://grst.one/{{url}}" target="_blank">https://grst.one/<strong>{{url}}</strong></a><input *ngIf="url == ''" id="claim-url-input-s" type="text" placeholder="Enter a Url" (keydown.space)="$event.preventDefault();">
+      <button class="copy-link-button" *ngIf="url !== ''" (click)="copyLink();">Copy Link</button>
+      <button class="copy-link-button" *ngIf="url == ''" (click)="claimLink();">Claim Link</button>
     </div>
   </div>
 </app-modal>
