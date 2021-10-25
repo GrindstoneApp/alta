@@ -74,7 +74,7 @@ export class EditorComponent implements OnInit {
         // Unavailable
         window.alert('This URL is already taken.')
       }
-    } catch(err) { 
+    } catch(err) {
       console.error(err)
     }
   }
@@ -83,6 +83,7 @@ export class EditorComponent implements OnInit {
     try {
       await this.session.initializePortfolio();
       this.setData();
+      this.openTutorialModal();
       console.log(this.portfolio.get())
     } catch(err: any) {
       if (err.error.errors && err.error.errors[0] === "user has no portfolios") {
@@ -111,13 +112,13 @@ export class EditorComponent implements OnInit {
         console.log(response)
         this.user.setKey("profile_image_url", `https://user-content.grindstoneapp.com/profile_pictures/${this.user.get().id}.jpeg?timeStamp=${Date.now()}`)
       }
-    } catch(err) { 
+    } catch(err) {
       console.error(err)
-    } 
+    }
   }
 
   openAddModuleModal(): void {
-    
+
     if ((this.portfolio.get().modules ? this.portfolio.get().modules.length : 0) >= 5) {
       window.alert("maximum modules reached")
     } else {
@@ -155,9 +156,9 @@ export class EditorComponent implements OnInit {
       });
       this.loadingModules = false;
     }, 200);
-    
+
   }
-  
+
   removeComponent = async (id: number): Promise<void> => {
     const deleted = await this.portfolioService.deleteModule(id);
     if(!deleted) return;
@@ -180,7 +181,7 @@ export class EditorComponent implements OnInit {
 
   public setData(): void {
     const portfolio = this.portfolio.get()
-    
+
     this.profileFormData = this.portfolio.get().profile;
     this.oldProfileFormData = this.profileFormData;
     if(portfolio.routes) {
@@ -229,7 +230,7 @@ export class EditorComponent implements OnInit {
     const labelElem = elem.nextSibling;
 
     if(val.trim().length > 0) return;
-    
+
     labelElem.classList.remove('active');
   }
 
@@ -266,7 +267,7 @@ export class EditorComponent implements OnInit {
       const elem = e.target;
       if(e.target.classList.contains('disabled')) return;
       this.saveButtonStatus = 'saving';
-      
+
       let data: any = {
         portfolio_id: this.portfolio.get().id,
         display_name: String($('#profile-name-input').val()).trim(),
@@ -274,7 +275,7 @@ export class EditorComponent implements OnInit {
         bio: String($('#profile-bio-input').val()),
         location: String($('#profile-location-input').val()).trim(),
         external_link: String($('#profile-website-input').val()).trim(),
-        display_email: this.profileFormData.display_email 
+        display_email: this.profileFormData.display_email
       }
       const response: Portfolio = await this.portfolioService.updateProfile(data);
       setTimeout(() => {

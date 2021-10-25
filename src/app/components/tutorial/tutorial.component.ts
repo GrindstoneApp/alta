@@ -19,38 +19,38 @@ export class TutorialComponent implements OnInit {
     {
       title: "Welcome to Portfolios",
       description: "Grindstone Portfolios is our all new product built to showcase who you are as a person–not as 'just another worker.'",
-      imageUrl: ""
+      imageUrl: "assets/images/1.jpeg"
     },
     {
       title: "An experience made for you",
       description: "Add up to 5 modules by clicking the \"+ Add Module\" button. Fully customize your portfolio to show only the things you care about.",
-      imageUrl: ""
+      imageUrl: "assets/images/2.jpeg"
     },
     {
       title: "Cover the basics",
       description: "Complete your profile on the left side of the screen. Enter your Display Name, a short bio, location, pronouns and an external link.",
-      imageUrl: ""
+      imageUrl: "assets/images/3.jpeg"
     },
     {
       title: "Build & Share",
       description: "After building your portfolio to match your needs, get a share link in the top right corner and jump start your future career!",
-      imageUrl: ""
+      imageUrl: "assets/images/4.jpeg"
     },
     {
       title: "Ready, set, go!",
       description: "Ready to go? click done! and if you have any questions our dedicated team is here to answer your questions in the support center!",
-      imageUrl: ""
+      imageUrl: "assets/images/5.jpeg"
     },
   ];
 
-  
+
 
   constructor(
     private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   closeCb = () => {

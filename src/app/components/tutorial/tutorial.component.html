@@ -1,6 +1,6 @@
 <app-modal id="tutorial" [allowClickOff]="false" [closeCb]="closeCb">
   <div class="modal-container">
-      <div class="modal-top-container">
+      <div class="modal-top-container reg-image" [ngStyle]="{'background-image': 'url(' + tutorialPages[activeTutorialPage].imageUrl + ')'}">
         <button class="skip-button" (click)="close();">Skip</button>
       </div>
       <div class="modal-bottom-container">
