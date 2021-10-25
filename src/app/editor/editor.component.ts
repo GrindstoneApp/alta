@@ -116,7 +116,12 @@ export class EditorComponent implements OnInit {
 
   openAddModuleModal(): void {
     // this.modalService.open("add-module");
-    this.portfolioModulesService.addComponent(1, this.modulesContainer)
+    // this.portfolioModulesService.addComponent(1, this.modulesContainer)
+    if ((this.portfolio.get().modules ? this.portfolio.get().modules.length : 0) >= 5) {
+      window.alert("maximum modules reached")
+    } else {
+      this.modalService.open("add-module");
+    }
   }
 
   toggleAccountMenu(): void {
