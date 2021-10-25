@@ -31,7 +31,7 @@ export class EditorComponent implements OnInit {
     bio: "",
     location: "",
     external_link: "",
-    display_email: false
+    display_email: false,
   }
   public oldProfileFormData: Profile = this.profileFormData;
   public profileLink: string = "";
