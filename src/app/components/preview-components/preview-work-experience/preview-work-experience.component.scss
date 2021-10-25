@@ -1,0 +1,26 @@
+.preview-module-container {
+  width: 100%;
+  margin-bottom: 100px;
+  .module-tag {
+    background: var(--radio-button-active-background);
+    color: var(--action-color);
+    padding: 8px 12px;
+    text-transform: uppercase;
+    width: fit-content;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .work-experience-title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+  }
+  .work-experience-description {
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 160%;
+    color: var(--secondary-font);
+  }
+}

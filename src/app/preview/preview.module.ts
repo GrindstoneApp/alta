@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PreviewComponent } from './preview.component';
 import { PreviewRoutingModule } from './preview-routing.module';
+import { PreviewWorkExperienceModule } from '../components/preview-components/preview-work-experience/preview-work-experience.module';
 
 
 
@@ -11,7 +12,8 @@ import { PreviewRoutingModule } from './preview-routing.module';
   ],
   imports: [
     CommonModule,
-    PreviewRoutingModule
+    PreviewRoutingModule,
+    PreviewWorkExperienceModule
   ]
 })
 export class PreviewModule { }
