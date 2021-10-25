@@ -109,6 +109,7 @@ export class EditorComponent implements OnInit {
     this.profileFormData = this.portfolio.get().profile;
     this.oldProfileFormData = this.profileFormData;
     this.profileLink = portfolio.routes[portfolio.routes.length - 1]?.url || "null"
+    this.bioCharacterCount = this.profileFormData.bio?.length || 0;
   }
 
   recordVideo(): void {
@@ -185,7 +186,7 @@ export class EditorComponent implements OnInit {
         portfolio_id: this.portfolio.get().id,
         display_name: String($('#profile-name-input').val()).trim(),
         pronouns: String($('#profile-pronouns-input').val()).trim(),
-        bio: String($('#profile-bio-input').val()).trim(),
+        bio: String($('#profile-bio-input').val()),
         location: String($('#profile-location-input').val()).trim(),
         external_link: String($('#profile-website-input').val()).trim(),
         display_email: this.profileFormData.display_email 

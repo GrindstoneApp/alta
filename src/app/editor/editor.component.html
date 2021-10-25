@@ -25,7 +25,7 @@
               <p class="account-email">{{this.user.get().email}}</p>
             </div>
             <button class="account-menu-button" (click)="openTutorialModal();">Tutorial</button>
-            <button class="account-menu-button" (click)="navigateToSupport();">Support</button>
+            <!-- <button class="account-menu-button" (click)="navigateToSupport();">Support</button> -->
             <button class="account-menu-button" (click)="logout();">Logout</button>
           </div>
         </div>
@@ -46,7 +46,7 @@
         </button>
         <div class="form-input-container">
           <input type="text" data-profileKey="display_name" [value]="profileFormData.display_name" id="profile-name-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" (input)="formKeyup($event);">
-          <p class="label" [ngClass]="{'active': oldProfileFormData.display_name?.length || 0 > 0}">Display Name</p>
+          <p class="label" [ngClass]="{'active': oldProfileFormData.display_name?.length || 0 > 0}">Display Name<strong class="required">*</strong></p>
         </div>
         <div class="form-input-container">
           <input type="text" data-profileKey="pronouns" [value]="profileFormData.pronouns" id="profile-pronouns-input" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" (input)="formKeyup($event);">
@@ -81,15 +81,11 @@
       </button>
     </div>
     <div class="module-editor-container">
-      <button (click)="recordVideo()">Record Video</button>
-      <label>https://grst.one/</label><input type="text" placeholder="claimURL" id="claim-url-input">
-      <input type="submit" value="Claim" (click)="claimURL()">
-      <br>
-      <br>
-      Routes:
-      <ul>
-        <li *ngFor="let route of portfolio.get().routes">{{route.url}}</li>
-      </ul>
+      <div class="module-components"></div>
+      <button class="add-module-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line><line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line></svg>
+        <p class="button-text">Add Module (0/5)</p>
+      </button>
     </div>
   </div>
 </div>
