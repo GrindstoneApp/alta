@@ -1,8 +1,13 @@
 <app-master-portfolio-module id="{{id}}" [moduleTitle]="data.title" [moduleIcon]="data.icon" [removeCallback]="data.removeCallback">
   <div class="form-container">
-    <select>
+    <select id="selectskill">
       <option *ngFor="let skill of skills" value="{{skill.id}}">{{skill.name}}</option>
     </select>
-    <input type="button" value="Add">
+    <input type="button" value="Add" id="addButton" (click)="addSkill()">
+    <div class="skills-wrapper">
+      <div class="skill" *ngFor="let skill of data.formData.skills">
+        <h5 class="fullCenter">{{skill.name}}</h5>
+      </div>
+    </div>
   </div>
 </app-master-portfolio-module>

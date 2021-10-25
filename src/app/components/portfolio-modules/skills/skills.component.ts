@@ -36,9 +36,22 @@ export class SkillsComponent implements OnInit {
     try {
       const response: any = await this.request.get(`${environment.API_URL}/ptfl/grab/skillsList`)
       this.skills = response
+      console.log(response)
     } catch (err: any) {
       console.error(err)
     }
+  }
+
+  addSkill(): void {
+    const id = $('#selectskill').val()
+    const match = this.skills.filter((x: any) => x.id == id)[0]
+
+    if(this.data.formData.skills) {
+      this.data.formData.skills.unshift(match)
+    } else {
+      this.data.formData.skills = [match]
+    }
+    this.saveModuleData();
   }
 
   delete(): void {
@@ -63,6 +76,7 @@ export class SkillsComponent implements OnInit {
         module_id: this.id,
         data_to_update
       }
+      console.log(data)
       const response: any = await this.request.post(`${environment.API_URL}/ptfl/update/module`, data)
       return
     } catch(err) {
