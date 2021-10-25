@@ -12,6 +12,7 @@ import { PortfolioModuleData } from '../portfolio-module-data';
 export class SkillsComponent implements OnInit {
 
   timeout: any;
+  skills: any = []
 
   @Input() id: any;
   @Input() data: PortfolioModuleData = {
@@ -26,8 +27,18 @@ export class SkillsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getSkills();
     console.log(this.data);
     console.log(this.id);
+  }
+
+  async getSkills(): Promise<void> {
+    try {
+      const response: any = await this.request.get(`${environment.API_URL}/ptfl/grab/skillsList`)
+      this.skills = response
+    } catch (err: any) {
+      console.error(err)
+    }
   }
 
   delete(): void {

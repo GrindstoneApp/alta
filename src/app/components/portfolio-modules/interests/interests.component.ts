@@ -12,6 +12,7 @@ import { PortfolioModuleData } from '../portfolio-module-data';
 export class InterestsComponent implements OnInit {
 
   timeout: any;
+  interests: any = []
 
   @Input() id: any;
   @Input() data: PortfolioModuleData = {
@@ -26,8 +27,18 @@ export class InterestsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getInterests();
     console.log(this.data);
     console.log(this.id);
+  }
+
+  async getInterests(): Promise<void> {
+    try {
+      const response: any = await this.request.get(`${environment.API_URL}/ptfl/grab/interestsList`)
+      this.interests = response
+    } catch (err: any) {
+      console.error(err)
+    }
   }
 
   delete(): void {
