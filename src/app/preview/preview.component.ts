@@ -17,6 +17,8 @@ export class PreviewComponent implements OnInit {
   portfolioID: number | null = null
   routeStr: string | null = null
 
+  loaded: boolean = false;
+
   portfolio: any = {
     "id": 20,
     "user_id": 6,
@@ -26,7 +28,7 @@ export class PreviewComponent implements OnInit {
       "short_name": "active"
     },
     "profile": {
-      "display_name": "Jackson Lawrence",
+      "display_name": "",
       "display_email": true,
       "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. incididunt ut labore et do",
       "external_link": "jlawrence.io",
@@ -81,7 +83,7 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    
+
     this.routeStr = String(routeParams.get('route'));
     if (this.routeStr) {
       this.getPortfolio();
@@ -108,7 +110,7 @@ export class PreviewComponent implements OnInit {
       this.addAllComponents();
       this.stringPortfolio = JSON.stringify(this.portfolio, null, 2);
       console.log(this.stringPortfolio)
-    } catch(err) { 
+    } catch(err) {
       console.error(err)
     }
   }
