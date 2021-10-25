@@ -41,6 +41,25 @@ export class InterestsComponent implements OnInit {
     }
   }
 
+  removeInterest(id: number): void {
+    this.data.formData.interests = this.data.formData.interests.filter(( obj: any ) => {
+      return obj.id !== id;
+    });
+    this.saveModuleData();
+  }
+
+  addInterest(): void {
+    const id = $('#selectinterest').val()
+    const match = this.interests.filter((x: any) => x.id == id)[0]
+
+    if(this.data.formData.interests) {
+      this.data.formData.interests.unshift(match)
+    } else {
+      this.data.formData.interests = [match]
+    }
+    this.saveModuleData();
+  }
+
   delete(): void {
     this.data?.removeCallback();
   }

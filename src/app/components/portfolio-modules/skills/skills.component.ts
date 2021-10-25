@@ -42,6 +42,13 @@ export class SkillsComponent implements OnInit {
     }
   }
 
+  removeSkill(id: number): void {
+    this.data.formData.skills = this.data.formData.skills.filter(( obj: any ) => {
+      return obj.id !== id;
+    });
+    this.saveModuleData();
+  }
+
   addSkill(): void {
     const id = $('#selectskill').val()
     const match = this.skills.filter((x: any) => x.id == id)[0]
