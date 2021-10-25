@@ -72,7 +72,12 @@ export class PreviewComponent implements OnInit {
   }
   stringPortfolio: string | null = null;
   private components: any = {
-    "component-1": PreviewWorkExperienceComponent
+    "component-1": PreviewWorkExperienceComponent,
+    "component-2": PreviewWorkExperienceComponent,
+    "component-3": PreviewWorkExperienceComponent,
+    "component-4": PreviewWorkExperienceComponent,
+    "component-5": PreviewWorkExperienceComponent,
+    "component-6": PreviewWorkExperienceComponent,
   }
 
   constructor(
