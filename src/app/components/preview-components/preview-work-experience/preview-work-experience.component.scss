@@ -24,3 +24,16 @@
     color: var(--secondary-font);
   }
 }
+
+
+@media screen and (max-width: 1300px) {
+  .work-experience-title {
+    font-size: 2rem !important;
+  }
+  .work-experience-description {
+    font-size: 1rem !important;
+  }
+  .preview-module-container {
+    margin-bottom: 70px !important;
+  }
+}

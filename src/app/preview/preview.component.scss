@@ -57,3 +57,28 @@
     max-width: 800px;
   }
 }
+
+@media screen and (max-width: 1300px) {
+  .profile-container {
+    width: 500px;
+    min-width: 500px;
+  }
+  .profile-image {
+    width: 180px !important;
+    height: 180px !important;
+  }
+  .profile-display-name {
+    font-size: 1.5rem !important;
+  }
+  .profile-bio {
+    font-size: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .profile-container {
+    width: 400px;
+    min-width: 400px;
+  }
+}
+
