@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { PortfolioProvider } from 'src/providers/portfolio.provider';
 import { ModalService } from 'src/services/app-components/modal.service';
+import { RequestService } from 'src/services/http/request.service';
 import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 
 @Component({
@@ -13,6 +16,8 @@ export class AddModuleComponent implements OnInit {
 
   constructor(
     private modalService: ModalService,
+    private request: RequestService,
+    private portfolio: PortfolioProvider,
     private portfolioService: PortfolioService
   ) { }
 
@@ -21,8 +26,18 @@ export class AddModuleComponent implements OnInit {
     console.log(this.modules);
   }
 
-  addModule(id: number): void {
+  async addModule(id: number): Promise<void> {
     // add module
+    try {
+      const data = {
+        portfolio_id: this.portfolio.get().id,
+        type: id,
+      }
+      const response: any = await this.request.post(`${environment.API_URL}/ptfl/create/module`, data)
+      console.log(response);
+    } catch(err) { 
+      console.error(err)
+    }
   }
   
   close(): void {

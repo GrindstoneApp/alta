@@ -23,6 +23,7 @@ export class EditorComponent implements OnInit {
   public showVideoComp = false;
   public saveButtonStatus: SaveButtonStatus = 'disabled'
   public bioCharacterCount = 0;
+  public numPortfolios = 0;
   public maxBioCharacterCount = 150;
   public profileFormData: Profile = {
     display_name: "",
@@ -135,6 +136,9 @@ export class EditorComponent implements OnInit {
     this.oldProfileFormData = this.profileFormData;
     if(portfolio.routes) {
       this.profileLink = portfolio.routes[portfolio.routes.length - 1]?.url || ""
+    }
+    if(portfolio.modules) {
+      this.numPortfolios = portfolio.modules.length
     }
     console.log(this.profileLink)
     this.bioCharacterCount = this.profileFormData.bio?.length || 0;

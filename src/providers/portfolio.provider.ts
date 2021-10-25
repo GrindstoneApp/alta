@@ -6,6 +6,7 @@ import { ErrorService } from 'src/services/qas/error.service';
 export interface Portfolio {
     id: number;
     profile: Profile;
+    modules: Module[];
     routes: Route[];
 }
 
@@ -16,6 +17,10 @@ export interface Profile {
     location?: string;
     external_link?: string;
     display_email?: boolean;
+}
+
+export interface Module {
+    
 }
 
 export interface Route {
