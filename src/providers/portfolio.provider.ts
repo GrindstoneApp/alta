@@ -28,19 +28,13 @@ export interface ModuleType {
     description: string;
 }
 
-export interface Data {
-    _id: string;
-    date_created: Date;
-    portfolio_id: number;
-}
-
 export interface Module {
     id: number;
     portfolio_id: number;
     module_type: ModuleType;
     object_id: string;
     status: Status;
-    data: Data;
+    data: any; // Unstructured mongodb data
 }
 
 export interface User {

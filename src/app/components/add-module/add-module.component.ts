@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { PortfolioProvider } from 'src/providers/portfolio.provider';
 import { ModalService } from 'src/services/app-components/modal.service';
+import { SessionService } from 'src/services/auth/session.service';
 import { RequestService } from 'src/services/http/request.service';
 import { PortfolioService } from 'src/services/portfolio/portfolio.service';
 
@@ -17,6 +18,7 @@ export class AddModuleComponent implements OnInit {
   constructor(
     private modalService: ModalService,
     private request: RequestService,
+    private session: SessionService,
     private portfolio: PortfolioProvider,
     private portfolioService: PortfolioService
   ) { }
@@ -35,6 +37,8 @@ export class AddModuleComponent implements OnInit {
       }
       const response: any = await this.request.post(`${environment.API_URL}/ptfl/create/module`, data)
       console.log(response);
+      this.close();
+      this.session.initializePortfolio();
     } catch(err) { 
       console.error(err)
     }
