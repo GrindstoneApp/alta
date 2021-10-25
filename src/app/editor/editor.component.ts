@@ -83,7 +83,6 @@ export class EditorComponent implements OnInit {
     try {
       await this.session.initializePortfolio();
       this.setData();
-      this.openTutorialModal();
       console.log(this.portfolio.get())
     } catch(err: any) {
       if (err.error.errors && err.error.errors[0] === "user has no portfolios") {
