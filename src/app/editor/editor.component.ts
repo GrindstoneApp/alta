@@ -129,6 +129,7 @@ export class EditorComponent implements OnInit {
     modules.forEach(m => {
       this.portfolioModulesService.addComponent(m.id, m.module_type.id, this.modulesContainer, {
         title: m.module_type.name,
+        icon: m.module_type.icon,
         formData: {},
         removeCallback: this.confirmRemoveComponent
       });
@@ -142,8 +143,10 @@ export class EditorComponent implements OnInit {
     if(!response) return;
     setTimeout(async () => {
       await this.session.initializePortfolio();
-      this.portfolioModulesService.addComponent(response.id, 1, this.modulesContainer, {
-        title: 'Work Experience',
+      console.log(response);
+      this.portfolioModulesService.addComponent(response.id, response.module_type.id, this.modulesContainer, {
+        title: response.module_type.name,
+        icon: response.module_type.icon,
         formData: {},
         removeCallback: this.confirmRemoveComponent
       });
@@ -276,8 +279,6 @@ export class EditorComponent implements OnInit {
         display_email: this.profileFormData.display_email 
       }
       const response: Portfolio = await this.portfolioService.updateProfile(data);
-      this.portfolio.set(response)
-      this.setData();
       setTimeout(() => {
         this.saveButtonStatus = 'disabled';
       }, 500)

@@ -9,6 +9,7 @@ import { ModalService } from 'src/services/app-components/modal.service';
 export class MasterPortfolioModuleComponent implements OnInit {
 
   @Input() moduleTitle: string = '';
+  @Input() moduleIcon: string = '';
   @Input() removeCallback: any;
   @Input() id: any;
 

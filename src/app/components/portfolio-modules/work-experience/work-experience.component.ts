@@ -12,6 +12,7 @@ export class WorkExperienceComponent implements OnInit {
   @Input() id: any;
   @Input() data: PortfolioModuleData = {
     title: '',
+    icon: '',
     formData: {},
     removeCallback: () => {}
   };
