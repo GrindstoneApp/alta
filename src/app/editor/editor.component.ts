@@ -186,6 +186,8 @@ export class EditorComponent implements OnInit {
     if(portfolio.modules) {
       this.numPortfolios = portfolio.modules.length;
       this.addModules(portfolio.modules);
+    } else {
+      this.loadingModules = false;
     }
     console.log(this.profileLink)
     this.bioCharacterCount = this.profileFormData.bio?.length || 0;
