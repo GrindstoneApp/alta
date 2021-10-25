@@ -83,7 +83,8 @@ export class EditorComponent implements OnInit {
     try {
       await this.session.initializePortfolio();
       this.setData();
-    } catch(err) {
+      console.log(this.portfolio.get())
+    } catch(err: any) {
       if (err.error.errors && err.error.errors[0] === "user has no portfolios") {
         await this.portfolioService.create();
         // retry
@@ -126,10 +127,13 @@ export class EditorComponent implements OnInit {
 
   addModules = (modules: Array<any>): void => {
     modules.forEach(m => {
+      delete(m.data._id)
+      delete(m.data.portfolio_id)
+      delete(m.data.date_created)
       this.portfolioModulesService.addComponent(m.id, m.module_type.id, this.modulesContainer, {
         title: m.module_type.name,
         icon: m.module_type.icon,
-        formData: {},
+        formData: m.data,
         removeCallback: this.removeComponent
       });
     });

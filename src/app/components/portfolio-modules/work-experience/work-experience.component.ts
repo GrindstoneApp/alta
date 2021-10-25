@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { RequestService } from 'src/services/http/request.service';
 
 import { PortfolioModuleData } from '../portfolio-module-data';
 
@@ -9,6 +11,8 @@ import { PortfolioModuleData } from '../portfolio-module-data';
 })
 export class WorkExperienceComponent implements OnInit {
 
+  timeout: any;
+
   @Input() id: any;
   @Input() data: PortfolioModuleData = {
     title: '',
@@ -17,7 +21,9 @@ export class WorkExperienceComponent implements OnInit {
     removeCallback: () => {}
   };
 
-  constructor() { }
+  constructor(
+    private request: RequestService
+  ) { }
 
   ngOnInit(): void {
     console.log(this.data);
@@ -30,6 +36,27 @@ export class WorkExperienceComponent implements OnInit {
 
   formKeyup(e: any): void {
     // throttle saves
+    const value = (e.currentTarget as HTMLInputElement).value
+    const key = e.target.getAttribute("data-keyid")
+    this.data.formData[key] = value
+    clearTimeout(this.timeout)
+    this.timeout = setTimeout(() => {
+      this.saveModuleData()
+    }, 500)
+  }
+
+  async saveModuleData() {
+    try {
+      const data_to_update = Object.assign({}, this.data.formData)
+      const data = {
+        module_id: this.id,
+        data_to_update
+      }
+      const response: any = await this.request.post(`${environment.API_URL}/ptfl/update/module`, data)
+      return
+    } catch(err) { 
+     console.error(err)
+    }
   }
 
   formInputFocused(e: any): void {
