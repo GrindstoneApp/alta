@@ -82,7 +82,7 @@ export class EditorComponent implements OnInit {
       if (err.error.errors && err.error.errors[0] === "user has no portfolios") {
         await this.portfolioService.create();
         // retry
-        this.openTutorialModal();
+        // this.openTutorialModal();
         this.initializePortfolio();
       }
       console.error(err)
@@ -108,6 +108,10 @@ export class EditorComponent implements OnInit {
     } catch(err) { 
       console.error(err)
     } 
+  }
+
+  openAddModuleModal(): void {
+    this.modalService.open("add-module");
   }
 
   toggleAccountMenu(): void {

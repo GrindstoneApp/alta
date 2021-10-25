@@ -374,14 +374,15 @@
       svg {
         width: 24px;
         height: 24px;
-        margin-right: 10px;
+        margin-right: 8px;
         *:not(rect) {
           stroke: #fff;
+          stroke-width: 25px;
         }
       }
       p {
         color: #fff;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
       }
     }
