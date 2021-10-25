@@ -1,0 +1,12 @@
+<app-master-portfolio-module id="{{id}}" [moduleTitle]="data.title" [moduleIcon]="data.icon" [removeCallback]="data.removeCallback">
+  <div class="form-container">
+    <div class="form-input-container">
+      <input type="text" data-keyid="title" [value]="data.formData.title || ''" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" (input)="formKeyup($event);">
+      <p class="label" [ngClass]="{'active': data.formData.title?.length || 0 > 0}">Title<strong class="required">*</strong></p>
+    </div>
+    <div class="form-input-container">
+      <textarea type="text" data-keyid="description" [value]="data.formData.description || ''" (input)="formKeyup($event);" (focus)="formInputFocused($event)" (blur)="formInputBlurred($event);" data-gramm_editor="false" data-enable-grammarly="false" data-gramm="false"></textarea>
+      <p class="label" [ngClass]="{'active': data.formData.description?.length || 0 > 0}">Description<strong class="required">*</strong></p>
+    </div>
+  </div>
+</app-master-portfolio-module>

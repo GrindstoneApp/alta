@@ -7,6 +7,7 @@ import { ShareLinkModule } from '../components/share-link/share-link.module';
 import { VideoModule } from '../components/video/video.module';
 import { AddModuleModule } from '../components/add-module/add-module.module';
 import { WorkExperienceModule } from '../components/portfolio-modules/work-experience/work-experience.module';
+import { VolunteerExperienceModule } from '../components/portfolio-modules/volunteer-experience/volunteer-experience.module';
 
 
 
@@ -22,7 +23,8 @@ import { WorkExperienceModule } from '../components/portfolio-modules/work-exper
     VideoModule,
     TutorialModule,
     AddModuleModule,
-    WorkExperienceModule
+    WorkExperienceModule,
+    VolunteerExperienceModule,
   ]
 })
 export class EditorModule { }

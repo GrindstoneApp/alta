@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { Injectable, ComponentFactoryResolver } from '@angular/core';
+import { VolunteerExperienceComponent } from 'src/app/components/portfolio-modules/volunteer-experience/volunteer-experience.component';
 import { WorkExperienceComponent } from 'src/app/components/portfolio-modules/work-experience/work-experience.component';
 import { environment } from 'src/environments/environment';
 import { Module } from 'src/providers/portfolio.provider';
@@ -11,10 +12,11 @@ import { RequestService } from '../http/request.service';
 export class PortfolioModulesService {
 
   private components: any = {
-    "component-1": WorkExperienceComponent
+    "component-1": WorkExperienceComponent,
+    "component-2": VolunteerExperienceComponent,
   }
   private loadedComponents: Array<any> = [];
-  
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private request: RequestService,
@@ -33,7 +35,7 @@ export class PortfolioModulesService {
   removeComponent(id: number, container: any): void {
     const component = this.loadedComponents.find((c: any) => c.instance.id === id);
     const componentIndex = this.loadedComponents.indexOf(component);
-    
+
     if (componentIndex !== -1) {
       container.remove(container.indexOf(component.hostView));
       this.loadedComponents.splice(componentIndex, 1);
@@ -48,7 +50,7 @@ export class PortfolioModulesService {
       }
       const response: any = await this.request.post(`${environment.API_URL}/ptfl/update/module`, data)
       return response
-    } catch(err) { 
+    } catch(err) {
      throw err
     }
   }
