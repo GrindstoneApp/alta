@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MasterPortfolioModuleModule } from '../../master-portfolio-module/master-portfolio-module.module';
-import { InterestsComponent } from './interests.component';
+import { SkillsComponent } from './skills.component';
 
 
 
 @NgModule({
   declarations: [
-    InterestsComponent
+    SkillsComponent
   ],
   imports: [
     CommonModule,
     MasterPortfolioModuleModule
   ],
   exports: [
-    InterestsComponent
+    SkillsComponent
   ]
 })
-export class InterestsModule { }
+export class SkillsModule { }

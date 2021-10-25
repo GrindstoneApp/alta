@@ -10,6 +10,8 @@ import { WorkExperienceModule } from '../components/portfolio-modules/work-exper
 import { VolunteerExperienceModule } from '../components/portfolio-modules/volunteer-experience/volunteer-experience.module';
 import { ClubsModule } from '../components/portfolio-modules/clubs/clubs.module';
 import { ClassesModule } from '../components/portfolio-modules/classes/classes.module';
+import { SkillsModule } from '../components/portfolio-modules/skills/skills.module';
+import { InterestsModule } from '../components/portfolio-modules/interests/interests.module';
 
 
 
@@ -26,6 +28,8 @@ import { ClassesModule } from '../components/portfolio-modules/classes/classes.m
     TutorialModule,
     AddModuleModule,
     WorkExperienceModule,
+    SkillsModule,
+    InterestsModule,
     ClubsModule,
     ClassesModule,
     VolunteerExperienceModule,
