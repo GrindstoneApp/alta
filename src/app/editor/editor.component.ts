@@ -38,7 +38,6 @@ export class EditorComponent implements OnInit {
   public oldProfileFormData: Profile = this.profileFormData;
   public profileLink: string = "";
   public loadingModules: boolean = true;
-  private currentConfirmDeleteModule: number = -1;
 
 
   changes: boolean = false;
@@ -84,7 +83,7 @@ export class EditorComponent implements OnInit {
     try {
       await this.session.initializePortfolio();
       this.setData();
-    } catch(err: any) {
+    } catch(err) {
       if (err.error.errors && err.error.errors[0] === "user has no portfolios") {
         await this.portfolioService.create();
         // retry
@@ -131,7 +130,7 @@ export class EditorComponent implements OnInit {
         title: m.module_type.name,
         icon: m.module_type.icon,
         formData: {},
-        removeCallback: this.confirmRemoveComponent
+        removeCallback: this.removeComponent
       });
     });
     this.loadingModules = false;
@@ -148,23 +147,18 @@ export class EditorComponent implements OnInit {
         title: response.module_type.name,
         icon: response.module_type.icon,
         formData: {},
-        removeCallback: this.confirmRemoveComponent
+        removeCallback: this.removeComponent
       });
       this.loadingModules = false;
     }, 200);
     
   }
-
-  confirmRemoveComponent = (id: number): void => {
-    this.currentConfirmDeleteModule = id;
-    this.modalService.open("confirm-delete-module");
-  }
   
-  removeComponent = async (): Promise<void> => {
-    const deleted = await this.portfolioService.deleteModule(this.currentConfirmDeleteModule);
+  removeComponent = async (id: number): Promise<void> => {
+    const deleted = await this.portfolioService.deleteModule(id);
     if(!deleted) return;
     await this.session.initializePortfolio();
-    this.portfolioModulesService.removeComponent(this.currentConfirmDeleteModule, this.modulesContainer);
+    this.portfolioModulesService.removeComponent(id, this.modulesContainer);
   }
 
   toggleAccountMenu(): void {
@@ -282,7 +276,7 @@ export class EditorComponent implements OnInit {
       setTimeout(() => {
         this.saveButtonStatus = 'disabled';
       }, 500)
-    } catch(err: any) {
+    } catch(err) {
       console.error(err)
     }
   }

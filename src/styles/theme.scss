@@ -38,22 +38,17 @@ html {
   --profile-left-container-primary-font: #fff;
   --profile-left-container-secondary-font: #7A849A;
 
+  --blue-loader-border: rgba(37, 98, 253, 0.2);
+  --blue-loader-fill: #2564FD;
 
   --add-module-button-icon-background: #ebf0f3;
   --add-module-button-active-background: rgba(37, 98, 253, 0.1);
 
-  --delete-portfolio-module-button: #484c58;
-  --delete-portfolio-module-button-hovered: #d10000;
+  --delete-module-button: #484c58;
+  --delete-module-button-hovered: #d10000;
 
-  --confirm-delete-module-button: #df0000;
-  --confirm-delete-module-button-hovered: #b80000;
-  --confirm-delete-module-button-font: #fff;
 
-  --cancel-delete-module-button: #ebf0f3;
-  --cancel-delete-module-button-hovered: #dbe2e6;
-  --cancel-delete-module-button-font: var(--primary-font);
-
-  --blue-loader-border: rgba(37, 98, 253, 0.2);
-  --blue-loader-fill: #2564FD;
+  --confirm-delete-module-button-hovered: #b80000;  
+  --cancel-delete-module-button-hovered: var(--primary-font);
 
 }

@@ -23,17 +23,47 @@
       font-size: 2rem;
       margin: -2px 15px 0 0;
     }
+    .hidden {
+      display: none !important;
+    }
+    .confirm-delete-buttons-container {
+      display: flex;
+      align-items: center;
+      button {
+        background: transparent;
+        border: none;        
+        cursor: pointer;
+        transition: color .2s;
+        &.confirm-delete {
+          color: var(--delete-module-button-hovered);
+          font-weight: 600;
+          font-size: 1.1rem;
+          &:hover {
+            color: var(--confirm-delete-module-button-hovered)
+          }
+        }
+        &.cancel-delete {
+          color: var(--secondary-font);
+          font-weight: 500;
+          font-size: 1rem;
+          margin-left: 2px;
+          &:hover {
+            color: var(--cancel-delete-module-button-hovered)
+          }
+        }
+      }
+    }
     .delete-button {
       background: transparent;
       cursor: pointer;
       border: none;
       &:hover svg {
-        fill: var(--delete-portfolio-module-button-hovered);
+        fill: var(--delete-module-button-hovered);
       }
       svg {
         width: 30px;
         height: 30px;
-        fill: var(--delete-portfolio-module-button);
+        fill: var(--delete-module-button);
         transition: fill .2s;
       }
     }

@@ -13,12 +13,22 @@ export class MasterPortfolioModuleComponent implements OnInit {
   @Input() removeCallback: any;
   @Input() id: any;
 
+  public confirmDeleteActive: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {}
 
   deleteModule(): void {
     this.removeCallback(parseInt(this.id));
+  }
+
+  confirmDelete(): void {
+    this.confirmDeleteActive = true;
+  }
+
+  cancelDelete(): void {
+    this.confirmDeleteActive = false;
   }
 
 }

@@ -36,7 +36,7 @@
   </div>
   <div class="editor-container">
     <div class="sidebar-container">
-      <div class="sidebar-form-container">
+      <div class="sidebar-form-container" [ngClass]="{'saving': saveButtonStatus === 'saving'}">
         <input type="file" (change)="avatarUploadInputChange($event)" id="avatar-upload-input">
         <button class="change-profile-image-button" (click)="avatarUploader();">
           <div class="profile-image" [ngStyle]="{'background-image': 'url(' + user.get().profile_image_url + ')'}">
@@ -99,4 +99,3 @@
 <app-share-link [url]="profileLink"></app-share-link>
 <grindstone-video *ngIf="showVideoComp"></grindstone-video>
 <app-tutorial></app-tutorial>
-<app-confirm-delete-module [confirmCallback]="removeComponent"></app-confirm-delete-module>
