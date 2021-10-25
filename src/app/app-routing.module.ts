@@ -19,13 +19,23 @@ const routes: Routes = [
     path: 'editor',
     loadChildren: () => import('./editor/editor.module').then((m) => m.EditorModule),
     canLoad: [AuthGuard],
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      seo: {
+        title: 'Grindstone | Editor',
+      }
+    }
   },
   {
     path: 'preview',
     loadChildren: () => import('./preview/preview.module').then((m) => m.PreviewModule),
     canLoad: [AuthGuard],
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      seo: {
+        title: 'Grindstone Portfolios',
+      }
+    }
   },
   {
     path: 'home',
@@ -55,7 +65,12 @@ const routes: Routes = [
   },
   {
     path: ':route',
-    loadChildren: () => import('./preview/preview.module').then((m) => m.PreviewModule)
+    loadChildren: () => import('./preview/preview.module').then((m) => m.PreviewModule),
+    data: {
+      seo: {
+        title: 'Grindstone Portfolios',
+      }
+    }
   },
 ];
 
