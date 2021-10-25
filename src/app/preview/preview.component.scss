@@ -5,6 +5,26 @@
   overflow: hidden;
 }
 
+.profile-buttons-container {
+  margin-top: 20px;
+}
+
+.profile-button {
+  width: 50px;
+  height: 50px;
+  background: #1E2129;
+  border: 1px solid #353945;
+  border-radius: 50%;
+  cursor: pointer;
+  p {
+    font-size: 18px;
+    text-align: center;
+  }
+  &:not(:first-child) {
+    margin-left: 25px;
+  }
+}
+
 .profile-container {
   width: 700px;
   min-width: 700px;

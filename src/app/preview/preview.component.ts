@@ -123,6 +123,18 @@ export class PreviewComponent implements OnInit {
     }
   }
 
+  buttonPress(type: string): void {
+    if (type === 'external_link' ) {
+      window.open(this.portfolio.profile.external_link)
+    }
+    if (type === 'email' ) {
+      window.open('mailto:' + this.portfolio.user.email)
+    }
+    if (type === 'location' ) {
+      window.open('https://www.google.com/maps/search/' + this.portfolio.profile.location)
+    }
+  }
+
   addAllComponents(): void {
     this.portfolio.modules.forEach((m: any) => {
       const data = {

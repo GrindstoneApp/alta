@@ -3,13 +3,15 @@
     <div class="profile-content-container">
       <img class="profile-image" [src]="portfolio.user.profile_image_url" alt="Profile picture">
       <h1 class="profile-display-name">{{portfolio.profile.display_name}}</h1>
-      <p class="profile-pronouns">{{portfolio.profile.pronouns}}</p>
+      <p class="profile-pronouns" *ngIf="portfolio.profile.pronouns && !portfolio.profile.location">{{portfolio.profile.pronouns}}</p>
+      <p class="profile-pronouns" *ngIf="!portfolio.profile.pronouns && portfolio.profile.location">{{portfolio.profile.location}}</p>
+      <p class="profile-pronouns" *ngIf="portfolio.profile.pronouns && portfolio.profile.location">{{portfolio.profile.pronouns}} • {{portfolio.profile.location}}</p>
       <p class="profile-bio">{{portfolio.profile.bio}}</p>
-      <!-- <div class="profile-buttons-container">
-        <button class="profile-button"></button>
-        <button class="profile-button"></button>
-        <button class="profile-button"></button>
-      </div> -->
+      <div class="profile-buttons-container">
+        <button class="profile-button" (click)="buttonPress('location')"><p>🏠</p></button>
+        <button class="profile-button" *ngIf="portfolio.profile.display_email"  (click)="buttonPress('email')"><p>📬</p></button>
+        <button class="profile-button" (click)="buttonPress('external_link')"><p>🔗</p></button>
+      </div>
     </div>
   </div>
   <div class="modules-container">
