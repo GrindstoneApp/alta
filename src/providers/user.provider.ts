@@ -28,6 +28,7 @@ export class UserProvider {
 
     set(user: User): void {
         this.user = user;
+        (this.user as User).profile_image_url = (this.user as User).profile_image_url + `?timeStamp=${Date.now()}`
         return;
     }
 
