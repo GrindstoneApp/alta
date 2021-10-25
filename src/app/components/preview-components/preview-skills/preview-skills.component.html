@@ -1,0 +1,15 @@
+<div class="preview-module-container">
+  <p class="module-tag">{{data.moduleTitle}}</p>
+  <div class="skills">
+    <div class="skill" *ngFor="let skill of data.customData?.skills">
+      <h2>{{skill.icon}}</h2>
+      <p>{{skill.name}}</p>
+    </div>
+  </div>
+  <div class="skills">
+    <div class="skill" *ngFor="let skill of data.customData?.interests">
+      <h2>{{skill.icon}}</h2>
+      <p>{{skill.name}}</p>
+    </div>
+  </div>
+</div>

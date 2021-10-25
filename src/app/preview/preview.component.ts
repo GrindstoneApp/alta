@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Portfolio } from 'src/providers/portfolio.provider';
 import { RequestService } from 'src/services/http/request.service';
+import { InterestsComponent } from '../components/portfolio-modules/interests/interests.component';
+import { SkillsComponent } from '../components/portfolio-modules/skills/skills.component';
+import { PreviewSkillsComponent } from '../components/preview-components/preview-skills/preview-skills.component';
 import { PreviewWorkExperienceComponent } from '../components/preview-components/preview-work-experience/preview-work-experience.component';
 
 @Component({
@@ -74,10 +77,10 @@ export class PreviewComponent implements OnInit {
   private components: any = {
     "component-1": PreviewWorkExperienceComponent,
     "component-2": PreviewWorkExperienceComponent,
-    "component-3": PreviewWorkExperienceComponent,
+    "component-3": PreviewSkillsComponent,
     "component-4": PreviewWorkExperienceComponent,
     "component-5": PreviewWorkExperienceComponent,
-    "component-6": PreviewWorkExperienceComponent,
+    "component-6": PreviewSkillsComponent,
   }
 
   constructor(
