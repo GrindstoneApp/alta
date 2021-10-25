@@ -4,6 +4,7 @@ import videojs from 'video.js';
 import * as Record from 'videojs-record/dist/videojs.record.js';
 import * as $ from 'jquery';
 import { environment } from 'src/environments/environment';
+import { RequestService } from 'src/services/http/request.service';
 
 @Component({
   selector: 'grindstone-video',
@@ -27,7 +28,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   private config: any;
   private player: any;
   private plugin: any;
-  constructor(elementRef: ElementRef) {
+  constructor(private request: RequestService, elementRef: ElementRef) {
     this.player = true;
     this.plugin = Record;
 
@@ -153,22 +154,15 @@ export class VideoComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
-  upload(blob: any): void {
-    // var serverUrl = `${environment.API_URL}/ptfl/upload/video`;
+  async upload(blob: any): Promise<void> {
     var serverUrl = `http://localhost:8000/ptfl/upload/video`
     var formData = new FormData();
     formData.append('file', blob, blob.name);
 
     console.log('upload recording ' + blob.name + ' to ' + serverUrl);
 
-    fetch(serverUrl, {
-        method: 'POST',
-        body: formData
-    }).then(
-        success => console.log('upload recording complete.')
-    ).catch(
-        error => console.error('an upload error occurred!')
-    );
+    const response = await this.request.post(`${serverUrl}`, formData);
+    console.log(response)
 }
 
   playbackEnded(): void {

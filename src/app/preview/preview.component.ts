@@ -61,12 +61,11 @@ export class PreviewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // const routeParams = this.route.snapshot.paramMap;
-    // this.routeStr = String(routeParams.get('route'));
-    // if (this.routeStr) {
-    //   this.getPortfolio();
-    // }
-    console.log(this.portfolio);
+    const routeParams = this.route.snapshot.paramMap;
+    this.routeStr = String(routeParams.get('route'));
+    if (this.routeStr) {
+      this.getPortfolio();
+    }
   }
 
   async getPortfolio(): Promise<void> {

@@ -89,6 +89,10 @@ export class EditorComponent implements OnInit {
     }
   }
 
+  avatarUploader(): void {
+    $('#avatar-upload-input').click();
+  }
+
   toggleAccountMenu(): void {
     this.accountMenuActive = !this.accountMenuActive
   }
