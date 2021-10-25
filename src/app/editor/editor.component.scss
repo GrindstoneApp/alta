@@ -461,3 +461,40 @@
     font-size: 0.8rem;
   }
 }
+
+@media screen and (max-height: 930px) {
+  .sidebar-container {
+    height: calc(100% - 60px) !important;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .sidebar-container {
+    width: 375px !important;
+    min-width: 375px !important;
+  }
+  .form-input-container {
+    p {
+      font-size: 0.7rem !important;
+    }
+    input {
+      font-size: 1rem !important;
+      padding: 30px 15px 15px !important;
+    }
+  }
+  .show-email-button {
+    height: 65px !important;
+  }
+
+  .change-profile-image-button {
+    margin: 30px auto 40px;
+    .profile-image {
+      width: 155px !important;
+      height: 155px !important;
+      margin: 0 auto !important;
+    }
+    p {
+      font-size: 0.9rem !important;
+    }
+  }
+}
