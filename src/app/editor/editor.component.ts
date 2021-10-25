@@ -133,8 +133,12 @@ export class EditorComponent implements OnInit {
     
     this.profileFormData = this.portfolio.get().profile;
     this.oldProfileFormData = this.profileFormData;
-    this.profileLink = portfolio.routes[portfolio.routes.length - 1]?.url || "null"
+    if(portfolio.routes) {
+      this.profileLink = portfolio.routes[portfolio.routes.length - 1]?.url || ""
+    }
+    console.log(this.profileLink)
     this.bioCharacterCount = this.profileFormData.bio?.length || 0;
+    console.log(this.bioCharacterCount)
   }
 
   recordVideo(): void {
