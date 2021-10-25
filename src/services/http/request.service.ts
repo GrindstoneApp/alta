@@ -21,6 +21,19 @@ export class RequestService {
     });
   }
 
+  put(url: string, data: object): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      await this.http.put(url, data).subscribe(
+        respon => {
+          resolve(respon);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   get(url: string, observe=false) {
     return new Promise((resolve, reject) => {
       if (observe) {
