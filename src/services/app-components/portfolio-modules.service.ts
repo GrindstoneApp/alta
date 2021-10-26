@@ -4,6 +4,7 @@ import { ClassesComponent } from 'src/app/components/portfolio-modules/classes/c
 import { ClubsComponent } from 'src/app/components/portfolio-modules/clubs/clubs.component';
 import { InterestsComponent } from 'src/app/components/portfolio-modules/interests/interests.component';
 import { SkillsComponent } from 'src/app/components/portfolio-modules/skills/skills.component';
+import { VideoIntroComponent } from 'src/app/components/portfolio-modules/video-intro/video-intro.component';
 import { VolunteerExperienceComponent } from 'src/app/components/portfolio-modules/volunteer-experience/volunteer-experience.component';
 import { WorkExperienceComponent } from 'src/app/components/portfolio-modules/work-experience/work-experience.component';
 import { environment } from 'src/environments/environment';
@@ -22,6 +23,7 @@ export class PortfolioModulesService {
     "component-4": ClubsComponent,
     "component-5": ClassesComponent,
     "component-6": InterestsComponent,
+    "component-7": VideoIntroComponent,
   }
   private loadedComponents: Array<any> = [];
 

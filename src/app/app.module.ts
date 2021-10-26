@@ -14,8 +14,8 @@ import { UserProvider } from 'src/providers/user.provider';
 import { JwtInterceptor } from 'src/interceptor/jwt.interceptor';
 import { PortfolioProvider } from 'src/providers/portfolio.provider';
 import { PortfolioService } from 'src/services/portfolio/portfolio.service';
-import { VideoComponent } from './components/video/video.component';
 import { PortfolioModulesService } from 'src/services/app-components/portfolio-modules.service';
+import { VideoComponent } from './components/video/video.component';
 
 
 export function sessionServiceFactory(provider: SessionService) {
@@ -38,8 +38,8 @@ export function sessionServiceFactory(provider: SessionService) {
     StorageService,
     UserProvider,
     SessionService,
-    VideoComponent,
     PortfolioService,
+    VideoComponent,
     ErrorService,
     PaginationService,
     ModalService,

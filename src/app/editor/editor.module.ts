@@ -12,6 +12,7 @@ import { ClubsModule } from '../components/portfolio-modules/clubs/clubs.module'
 import { ClassesModule } from '../components/portfolio-modules/classes/classes.module';
 import { SkillsModule } from '../components/portfolio-modules/skills/skills.module';
 import { InterestsModule } from '../components/portfolio-modules/interests/interests.module';
+import { VideoIntroModule } from '../components/portfolio-modules/video-intro/video-intro.module';
 
 
 
@@ -25,6 +26,7 @@ import { InterestsModule } from '../components/portfolio-modules/interests/inter
     TutorialModule,
     ShareLinkModule,
     VideoModule,
+    VideoIntroModule,
     TutorialModule,
     AddModuleModule,
     WorkExperienceModule,
