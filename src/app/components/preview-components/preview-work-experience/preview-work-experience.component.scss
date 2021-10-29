@@ -26,3 +26,16 @@
 }
 
 
+@media screen and (max-width: 700px) {
+  .module-tag {
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  .work-experience-title {
+    text-align: center !important;
+    font-size: 2rem !important;
+  }
+  .work-experience-description {
+    text-align: center;
+  }
+}
