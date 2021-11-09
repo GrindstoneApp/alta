@@ -8,9 +8,14 @@
       <p class="profile-pronouns" *ngIf="portfolio.profile.pronouns && portfolio.profile.location">{{portfolio.profile.pronouns}} • {{portfolio.profile.location}}</p>
       <p class="profile-bio">{{portfolio.profile.bio}}</p>
       <div class="profile-buttons-container">
-        <button class="profile-button" (click)="buttonPress('location')"><p>🏠</p></button>
-        <button class="profile-button" *ngIf="portfolio.profile.display_email"  (click)="buttonPress('email')"><p>📬</p></button>
-        <button class="profile-button" (click)="buttonPress('external_link')"><p>🔗</p></button>
+        <button class="profile-button" *ngIf="portfolio.profile.display_email"  (click)="buttonPress('email')">
+          <p class="profile-button-icon">📬</p>
+          <p class="profile-button-text">Email</p>
+        </button>
+        <button class="profile-button" (click)="buttonPress('external_link')">
+          <p class="profile-button-icon">🔗</p>
+          <p class="profile-button-text">Website</p>
+        </button>
       </div>
     </div>
   </div>

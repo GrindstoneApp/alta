@@ -31,7 +31,7 @@ export class PreviewComponent implements OnInit {
       "short_name": "active"
     },
     "profile": {
-      "display_name": "",
+      "display_name": "Jackson Lawrence",
       "display_email": true,
       "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. incididunt ut labore et do",
       "external_link": "jlawrence.io",

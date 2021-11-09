@@ -7,21 +7,38 @@
 
 .profile-buttons-container {
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-button {
-  width: 50px;
-  height: 50px;
-  background: #1E2129;
-  border: 1px solid #353945;
-  border-radius: 50%;
+  padding: 10px 0;
+  width: 180px;
   cursor: pointer;
-  p {
-    font-size: 18px;
-    text-align: center;
+  background: var(--profile-button-background);
+  border: 1px solid var(--profile-button-border);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s, border .2s, box-shadow .2s;
+  &:hover {
+    background: var(--profile-button-background-hovered);
+    border-color: var(--profile-button-border-hovered);
   }
-  &:not(:first-child) {
-    margin-left: 25px;
+  .profile-button-icon {
+    font-size: 1.1rem;
+    margin-right: 15px;
+  }
+  .profile-button-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    transition: color .2s;
+  }
+  &:not(:last-child) {
+    margin-right: 25px;
   }
 }
 
@@ -99,6 +116,17 @@
   .profile-container {
     width: 400px;
     min-width: 400px;
+  }
+  .profile-buttons-container {
+      flex-direction: column;
+      justify-content: center;
+  }
+  .profile-button {
+    width: calc(100% - 20px);
+    margin-right: 0 !important;
+  }
+  .profile-button:not(:last-child) {
+    margin-bottom: 15px;
   }
 }
 
