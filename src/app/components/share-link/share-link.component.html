@@ -7,10 +7,26 @@
       </button>
     </div>
     <p class="modal-subtitle">Copy and paste the link below to share your Grindstone profile.</p>
-    <div class="copy-link-container">
-      <a class="link" href="https://grst.one/{{url}}" target="_blank">https://grst.one/<strong>{{url}}</strong></a><input *ngIf="url == ''" id="claim-url-input-s" type="text" placeholder="Enter a Url" (keydown.space)="$event.preventDefault();">
-      <button class="copy-link-button" *ngIf="url !== ''" (click)="copyLink();">Copy Link</button>
-      <button class="copy-link-button" *ngIf="url == ''" (click)="claimLink();">Claim Link</button>
+    <div class="link-container" [ngClass]="{'changes': changes, 'saving': saving}">
+      <div class="link-input-container">
+        <p class="link-prefix">https://grst.one/</p>
+        <input #linkInput class="link-input" type="text" (input)="input($event);" [value]="url">
+      </div>
+      <div class="link-actions-container">
+        <button class="copy-link-button" (click)="copyLink();">Copy Link</button>
+        <div class="update-link-buttons-container">
+          <button class="save-new-link-button" (click)="saveChanges();">Save</button>
+          <button class="cancel-new-link-button" (click)="cancelChanges();">Cancel</button>
+        </div>
+        <div class="loader-icon blue"></div>
+      </div>
     </div>
+    <button class="make-profile-public-button active" (click)="togglePublicProfile($event);" [ngClass]="{'active': isProfilePublic}">
+      <div class="button-left-container">
+        <p class="button-title">Public profile</p>
+        <p class="button-description">Allow others to view your profile.</p>
+      </div>
+      <div class="switch-button"></div>
+    </button>
   </div>
 </app-modal>

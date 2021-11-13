@@ -54,7 +54,6 @@ export class TutorialComponent implements OnInit {
   }
 
   closeCb = () => {
-    console.log(this.activeTutorialPage);
     this.activeTutorialPage = 0;
   }
 

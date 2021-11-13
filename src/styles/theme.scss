@@ -1,12 +1,14 @@
 html {
   --primary-background: #fff;
   --secondary-background: #F5F8FA;
-  
+  --secondary-background-hovered: #e7ecf0;
+  --container-border: #D8DEE3;
+
   --modal-overlay-background: rgba(10,29,47,0.6);
   --modal-background: #fff;
 
   --action-color: #2564FD;
-  --action-color-hovered: #184ed4;
+  --action-color-hovered: #257bfd;
   --primary-font: #21242E;
   --secondary-font: #717581;
 
@@ -14,14 +16,10 @@ html {
   --tutorial-page-counter-dot-active: #2564FD;
 
   --navbar-background: rgb(30, 34, 41);
-  --navbar-border: #D8DEE3;
   --navbar-primary-font: #fff;
 
-
-  --sidebar-border: #D8DEE3;
-  --profile-image-border: #D8DEE3;
-
-  --input-border: #D8DEE3;
+  --input-background: #F0F3F5;
+  --input-focused: #e6ebee;
 
   --disabled-button-background: #D8DEE3;
   --disabled-button-color: #6f7280;
@@ -55,5 +53,13 @@ html {
   --profile-button-border: #353945;
   --profile-button-background-hovered: #262933;
   --profile-button-border-hovered: #404552;
+
+  --switch-button-background: #DCE3E8;
+  --switch-button-hovered-background: #cdd4da;
+  --switch-button-circle: #fff;
+
+  --discard-link-changes-button-background: rgba(209, 0, 0, 0.1);
+  --discard-link-changes-button-icon: #d10000;
+  --discard-link-changes-button-background-hovered: rgba(209, 0, 0, 0.2);
 
 }

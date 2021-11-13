@@ -1,9 +1,10 @@
 .modal-container {
   background: var(--modal-background);
-  width: 600px;
+  max-width: 700px;
+  width: 90%;
   border-radius: 5px;
   box-shadow: 0 10px 30px 0 rgba(0,0,0,0.1);
-  padding: 20px 20px 40px;
+  padding: 30px 0 0;
 }
 
 .copy-link-container input {
@@ -19,6 +20,7 @@
 .modal-top-container {
   display: flex;
   align-items: center;
+  padding: 0 20px;
   justify-content: space-between;
   .modal-title {
     font-weight: 700;
@@ -49,40 +51,180 @@
 .modal-subtitle {
   color: var(--secondary-font);
   font-size: 1rem;
+  margin: 0 0 40px 20px;
 }
 
-.copy-link-container {
-  margin-top: 40px;
+.link-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
-  .link {
-    font-size: 1.1rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--primary-font);
-    &:hover {
-      text-decoration: underline;
+  width: calc(100% - 40px);
+  margin: 0 auto 40px;
+  &.changes {
+    .copy-link-button {
+      display: none;
     }
-    strong {
+    .update-link-buttons-container {
+      display: flex;
+    }
+  }
+  &.saving {
+    .link-actions-container {
+      button {
+        display: none;
+      }
+    }
+    .link-input-container {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .loader-icon {
+      display: block;
+    }
+  }
+  .link-input-container {
+    width: 100%;
+    z-index: 2;
+    .link-prefix {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      font-size: 1.1rem;
       font-weight: 500;
+      pointer-events: none;
+    }
+    .link-input {
+      padding: 0 15px 0 149px;
+      height: 60px;
       color: var(--action-color);
+      font-size: 1.1rem;
+      text-transform: lowercase;
+      border: 1px solid var(--container-border);
+      border-radius: 4px;
+      outline: none;
+      width: 100%;
+      font-weight: 500;
+      transition: border-color .2s;
+      &:focus {
+        border-color: var(--action-color);
+      }
+    }
+  }
+  .link-actions-container {
+    position: absolute;
+    z-index: 3;
+    right: 15px;
+    height: 100%;
+  }
+  .update-link-buttons-container {
+    display: none;
+    align-items: center;
+    height: 100%;
+    button {
+      background: none;
+      height: 100%;
+      border: none;
+      padding: 0 4px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color .2s;
+    }
+    .save-new-link-button {
+      margin-right: 8px;
+      color: var(--action-color);
+      &:hover {
+        color: var(--action-color-hovered);
+      }
+    }
+    .cancel-new-link-button {
+      color: var(--secondary-font);
+      &:hover {
+        color: var(--primary-font);
+      }
     }
   }
   .copy-link-button {
-    background: var(--action-color);
-    padding: 12px 20px;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    transition: background .2s;
+    color: var(--action-color);
     font-size: 1rem;
     font-weight: 500;
-    border-radius: 3px;
+    height: 100%;
+    padding: 4px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
     &:hover {
-      background: var(--action-color-hovered);
+      color: var(--action-color-hovered);
+    }
+  }
+  .loader-icon {
+    display: none;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 16px;
+  }
+}
+
+.make-profile-public-button {
+  width: 100%;
+  padding: 25px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: var(--secondary-background);
+  border: none;
+  border-radius: 0 0 5px 5px;
+  transition: background .2s;
+  &:hover {
+    background: var(--secondary-background-hovered);
+    .switch-button {
+      background: var(--switch-button-hovered-background);
+    }
+  }
+  &.active {
+    .switch-button {
+      background: var(--action-color) !important;
+      &::after {
+        left: 24px;
+      }
+    }
+  }
+  .button-left-container {
+    text-align: left;
+  }
+  .button-title {
+    font-weight: 700;
+    color: var(--primary-font);
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+    transition: color .2s;
+  }
+  .button-description {
+    transition: color .2s;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--secondary-font);
+  }
+  .switch-button {
+    background: var(--switch-button-background);
+    width: 50px;
+    height: 30px;
+    border-radius: 60px;
+    transition: background .2s;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 22px;
+      background: var(--switch-button-circle);
+      left: 4px;
+      top: 4px;
+      transition: left .2s;
     }
   }
 }

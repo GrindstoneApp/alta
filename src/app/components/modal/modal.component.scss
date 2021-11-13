@@ -25,10 +25,13 @@
 .modal-outer-container {
   position: fixed;
   top: calc(50% - 20px);
-  left: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   z-index: 101;
   transition: opacity .2s, top .2s;
 }

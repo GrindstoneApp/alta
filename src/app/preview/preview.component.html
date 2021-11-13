@@ -12,7 +12,7 @@
           <p class="profile-button-icon">📬</p>
           <p class="profile-button-text">Email</p>
         </button>
-        <button class="profile-button" (click)="buttonPress('external_link')">
+        <button class="profile-button" *ngIf="portfolio.profile.external_link" (click)="buttonPress('external_link')">
           <p class="profile-button-icon">🔗</p>
           <p class="profile-button-text">Website</p>
         </button>

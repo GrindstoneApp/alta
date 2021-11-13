@@ -16,7 +16,7 @@
   min-height: 65px;
   background: var(--primary-background);
   z-index: 3;
-  border-bottom: 1px solid var(--navbar-border);
+  border-bottom: 1px solid var(--container-border);
   .nav-content-container {
     width: calc(100% - 40px);
     display: flex;
@@ -89,7 +89,7 @@
       .account-dropdown-menu {
         position: absolute;
         right: 0;
-        border: 1px solid var(--navbar-border);
+        border: 1px solid var(--container-border);
         top: calc(100% + 15px);
         background: #fff;
         border-radius: 5px;
@@ -105,7 +105,7 @@
         }
         .menu-top-container {
           padding: 20px 15px;
-          border-bottom: 1px solid var(--navbar-border);
+          border-bottom: 1px solid var(--container-border);
           text-align: left;
           .account-name {
             font-size: 1.1rem;
@@ -182,7 +182,7 @@
     min-width: 500px;
     height: 100%;
     z-index: 2;
-    border-right: 1px solid var(--sidebar-border);
+    border-right: 1px solid var(--container-border);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -219,7 +219,7 @@
           height: 180px;
           overflow: hidden;
           border-radius: 200px;
-          border: 1px solid var(--profile-image-border);
+          border: 1px solid var(--container-border);
           .change-image-overlay {
             background: var(--change-image-overlay-color);
             width: 100%;
@@ -256,7 +256,7 @@
         cursor: pointer;
         border: none;
         background: transparent;
-        border: 1px solid var(--input-border);
+        border: 1px solid var(--container-border);
         border-radius: 4px;
         transition: border-color .2s, background .2s;
         &:hover {
@@ -280,7 +280,7 @@
             width: 24px;
             height: 24px;
             border-radius: 24px;
-            box-shadow: inset 0 0 0 2px var(--input-border);
+            box-shadow: inset 0 0 0 2px var(--container-border);
             margin-right: 15px;
             background: var(--primary-background);
             transition: box-shadow .2s;

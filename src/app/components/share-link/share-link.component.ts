@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { EditorComponent } from 'src/app/editor/editor.component';
 import { environment } from 'src/environments/environment';
 import { PortfolioProvider } from 'src/providers/portfolio.provider';
@@ -14,6 +14,11 @@ import { RequestService } from 'src/services/http/request.service';
 export class ShareLinkComponent implements OnInit {
 
   @Input() url: string = '';
+  @ViewChild('linkInput') linkInput: any; 
+  newUrl: string = '';
+  isProfilePublic = false;
+  changes = false;
+  saving = false;
 
   constructor(
     private modalService: ModalService,
@@ -27,6 +32,10 @@ export class ShareLinkComponent implements OnInit {
 
   }
 
+  togglePublicProfile(e: any): void {
+    this.isProfilePublic = !this.isProfilePublic;
+  }
+
 
   close(): void {
     this.modalService.close("share-link");
@@ -35,6 +44,33 @@ export class ShareLinkComponent implements OnInit {
   copyLink(): void {
     navigator.clipboard.writeText(`https://grst.one/${this.url}`);
     this.close();
+  }
+
+  input(e: any): void {
+    const elem = e.target;
+    const val = elem.value;
+    this.newUrl = val;
+    this.changes = this.newUrl != this.url;
+  }
+
+  saveChanges(): void {
+    this.saving = true;
+    setTimeout(() => { // Remove settimout after adding post
+      if(true) { // IF LINK IS AVAILABLE AND CLAIMED
+        this.saving = false;
+        this.changes = false;
+        this.url = this.newUrl;
+      } else { // IF LINK IS NOT AVAILABLE
+        this.saving = false;
+        // I will add alerts once I create a service for them
+      }
+    }, 300);
+  }
+
+  cancelChanges(): void {
+    this.changes = false;
+    this.newUrl = '';
+    this.linkInput.nativeElement.value = this.url;
   }
 
   async claimLink(): Promise<void> {

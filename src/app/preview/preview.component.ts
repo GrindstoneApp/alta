@@ -130,9 +130,6 @@ export class PreviewComponent implements OnInit {
     if (type === 'email' ) {
       window.open('mailto:' + this.portfolio.user.email)
     }
-    if (type === 'location' ) {
-      window.open('https://www.google.com/maps/search/' + this.portfolio.profile.location)
-    }
   }
 
   addAllComponents(): void {
