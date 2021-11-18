@@ -21,6 +21,15 @@ export class RequestService {
     });
   }
 
+  delete(url: string, data: object) {
+    return new Promise((resolve, reject) => {
+      this.http.delete(url, data).subscribe(
+        respon => resolve(respon),
+        error => reject(error)
+      );
+    });
+  }
+
   put(url: string, data: object): Promise<any> {
     return new Promise(async (resolve, reject) => {
       await this.http.put(url, data).subscribe(

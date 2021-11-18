@@ -52,9 +52,6 @@ export class SessionService {
       const response: any = await this.request.get(`${environment.API_URL}/auth/user`)
       this.user.set(response as User);
     } catch(err) { 
-      await this.setAccountType()
-      this.initialize()
-      this.pagination.rootToPage('/editor')
       throw err
     }
   }
@@ -204,10 +201,23 @@ export class SessionService {
 
   async logout(): Promise<void> {
     try {
+      await this.revokeToken();
       this.store.delete({ key: 'accessToken' });
       this.store.delete({ key: 'refreshToken' });
       location.href = `https://accounts.grindstoneapp.com/o/oauth/logout`
       return;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async revokeToken(): Promise<void> {
+    try {
+        const response: any = await this.request.delete(
+          `${environment.API_URL}/auth/token`,
+          {}
+        );
+        return;
     } catch (err) {
       throw err;
     }

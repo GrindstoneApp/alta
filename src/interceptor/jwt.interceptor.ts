@@ -41,6 +41,8 @@ export class JwtInterceptor implements HttpInterceptor {
                 return throwError(err);
               case 401:
                 return this.handle401Error(request, next, err);
+              case 403:
+                return this.handle403Error(request, next, err);
               case 500:
                 return this.handle500Error(request, next, err);
               default:
@@ -53,6 +55,16 @@ export class JwtInterceptor implements HttpInterceptor {
       );
     }
   }
+
+  private handle403Error(request: HttpRequest < any >, next: HttpHandler, err: any): Observable < any > {
+    if(err.error) {
+       console.error(err.error.errors[0])
+        this.session.logout();  // logout user
+        return err
+    } else {
+      return throwError(err);
+    }
+}
 
   private handle500Error(request: HttpRequest < any >, next: HttpHandler, err: any): Observable < any > {
     if(err.error.errors) {
@@ -120,7 +132,7 @@ export class JwtInterceptor implements HttpInterceptor {
     } else {
       return throwError(err);
     }
-}
+  }
 
   private isInBlockedList(url: string): Boolean {
     if (
