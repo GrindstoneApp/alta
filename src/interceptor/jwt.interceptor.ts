@@ -101,7 +101,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (err.error) {
       if (!err.error.message) {
         if (err.error.errors.toString().includes('calling user does not have a type')) {
-          window.location.href = 'https://accounts.grindstoneapp.com/o/type?redirectURI=' + window.location.href;
+          window.location.href = 'https://accounts.grindstoneapp.com/o/oauth/type?redirectURI=' + window.location.href;
           throw err
         } else {
           return throwError(err);
