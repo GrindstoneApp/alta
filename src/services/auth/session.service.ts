@@ -37,7 +37,7 @@ export class SessionService {
       const session = await this.sessionInService()
       if (session) {
         await this.initializeUser();
-        await this.initializePortfolio();
+        // await this.initializePortfolio();
       } else {
         // Do Something
       }
