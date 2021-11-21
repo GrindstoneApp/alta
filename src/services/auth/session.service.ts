@@ -204,7 +204,7 @@ export class SessionService {
       await this.revokeToken();
       this.store.delete({ key: 'accessToken' });
       this.store.delete({ key: 'refreshToken' });
-      location.href = `https://accounts.grindstoneapp.com/o/oauth/logout`
+      window.location.href = `https://accounts.grindstoneapp.com/o/oauth/logout`
       return;
     } catch (err) {
       throw err;
